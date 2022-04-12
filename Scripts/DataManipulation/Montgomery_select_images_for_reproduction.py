@@ -21,7 +21,7 @@ normal = "normal" # Finding = normal
 metadata = "montgomery_metadata.csv" # Meta info
 imageDir = "../../Data/FullSet/MontgomerySet/CXR_png" # Directory of images
 metafileFolder = "../../Data/FullSet/MontgomerySet/ClinicalReadings" # Directory containing all meta files
-normalOutputDir = '../../Data/FinalSet/normal' # Output directory to store selected images - nornal finding.
+normalOutputDir = '../../Data/FinalSet/Normal' # Output directory to store selected images - nornal finding.
 tbOutputDir = '../../Data/FinalSet/TB' # Output directory to store selected images - TB finding.
 
 # Skip files without failing that were not found

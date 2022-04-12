@@ -1,0 +1,261 @@
+C:\AshutoshOneDrive\OneDrive\Masters\Courses\DLH\Project\Gupta_Experiment\Ashutosh_Reproduction\Scripts\ModelTraining> python .\train_rotate_120_angle_24_epochs_model.py
+2022-04-12 00:07:55.839333: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'cudart64_110.dll'; dlerror: cudart64_110.dll not found
+2022-04-12 00:07:55.839448: I tensorflow/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
+WARNING:tensorflow:From C:\Users\asaga\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.8_qbz5n2kfra8p0\LocalCache\local-packages\Python38\site-packages\tensorflow\python\compat\v2_compat.py:107: disable_resource_variables (from tensorflow.python.ops.variable_scope) is deprecated and will be removed in a future version.
+Instructions for updating:
+non-resource variables are not supported in the long term
+Going to read training images
+Now going to read covid_19 files (Index: 0)
+Now going to read non_covid_19 files (Index: 1)
+Now going to read Normal files (Index: 2)
+Now going to read Pneumonia files (Index: 3)
+Now going to read TB files (Index: 4)
+Complete reading input data. Will Now print a snippet of it
+Number of files in Training-set:                369
+Number of files in Validation-set:      41
+2022-04-12 00:09:21.254192: W tensorflow/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'nvcuda.dll'; dlerror: nvcuda.dll not found
+2022-04-12 00:09:21.254293: W tensorflow/stream_executor/cuda/cuda_driver.cc:269] failed call to cuInit: UNKNOWN ERROR (303)
+2022-04-12 00:09:21.261883: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:169] retrieving CUDA diagnostic information for host: ASAGA-DESKTOP
+2022-04-12 00:09:21.262137: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:176] hostname: ASAGA-DESKTOP
+2022-04-12 00:09:21.262561: I tensorflow/core/platform/cpu_feature_guard.cc:151] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX AVX2
+To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
+WARNING:tensorflow:From C:\Users\asaga\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.8_qbz5n2kfra8p0\LocalCache\local-packages\Python38\site-packages\tensorflow\python\util\dispatch.py:1082: calling argmax (from tensorflow.python.ops.math_ops) with dimension is deprecated and will be removed in a future version.
+Instructions for updating:
+Use the `axis` argument instead
+
+Training Epoch 1/18 --- Training Accuracy:  37.5%, Validation Accuracy:  31.2%,  Validation Loss: 2.802
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 369
+Training Epoch 2/18 --- Training Accuracy:  50.0%, Validation Accuracy:  81.2%,  Validation Loss: 0.651
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 369
+self._num_examples: 41
+Training Epoch 3/18 --- Training Accuracy:  62.5%, Validation Accuracy:  75.0%,  Validation Loss: 0.780
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 369
+Training Epoch 4/18 --- Training Accuracy:  68.8%, Validation Accuracy:  87.5%,  Validation Loss: 0.656
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 369
+self._num_examples: 41
+Training Epoch 5/18 --- Training Accuracy:  81.2%, Validation Accuracy:  81.2%,  Validation Loss: 0.552
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 369
+Training Epoch 6/18 --- Training Accuracy:  75.0%, Validation Accuracy:  87.5%,  Validation Loss: 0.531
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 369
+self._num_examples: 41
+Training Epoch 7/18 --- Training Accuracy:  81.2%, Validation Accuracy:  81.2%,  Validation Loss: 0.394
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 369
+Training Epoch 8/18 --- Training Accuracy:  81.2%, Validation Accuracy:  87.5%,  Validation Loss: 0.471
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 369
+self._num_examples: 41
+Training Epoch 9/18 --- Training Accuracy:  87.5%, Validation Accuracy:  81.2%,  Validation Loss: 0.271
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 369
+Training Epoch 10/18 --- Training Accuracy:  87.5%, Validation Accuracy:  87.5%,  Validation Loss: 0.433
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 369
+self._num_examples: 41
+Training Epoch 11/18 --- Training Accuracy:  87.5%, Validation Accuracy:  87.5%,  Validation Loss: 0.217
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 369
+Training Epoch 12/18 --- Training Accuracy:  87.5%, Validation Accuracy:  87.5%,  Validation Loss: 0.346
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 369
+self._num_examples: 41
+Training Epoch 13/18 --- Training Accuracy:  87.5%, Validation Accuracy: 100.0%,  Validation Loss: 0.168
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 369
+Training Epoch 14/18 --- Training Accuracy:  93.8%, Validation Accuracy:  87.5%,  Validation Loss: 0.319
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 369
+self._num_examples: 41
+Training Epoch 15/18 --- Training Accuracy:  93.8%, Validation Accuracy:  93.8%,  Validation Loss: 0.171
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 369
+Training Epoch 16/18 --- Training Accuracy: 100.0%, Validation Accuracy:  87.5%,  Validation Loss: 0.338
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 369
+self._num_examples: 41
+Training Epoch 17/18 --- Training Accuracy: 100.0%, Validation Accuracy:  93.8%,  Validation Loss: 0.203
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 369
+Training Epoch 18/18 --- Training Accuracy: 100.0%, Validation Accuracy:  87.5%,  Validation Loss: 0.238
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+self._num_examples: 41
+
+Execution Time: 10.660339200496674 minutes
