@@ -19,7 +19,7 @@ x_ray_view = "PA" # View of X-Ray
 
 metadata = "Kaggle_metadata.csv" # Meta info
 imageDir = "../../Data/FullSet/Kaggle Dataset/Images" # Directory of images
-outputDir = '../../Data/FinalSet/pneumonia' # Output directory to store selected images
+outputDir = '../../Data/FinalSet/Pneumonia' # Output directory to store selected images
 
 if not os.path.exists(outputDir):  # check if directory already exist
     os.mkdir(outputDir)  # create a directory

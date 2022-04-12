@@ -12,12 +12,18 @@ import cv2
 import numpy as np
 import os
 
-inputFolderPath = "../../Data/FinalSet"
+trainFolderPath = "../../Data/train"
+testFolderPath = "../../Data/test"
 
-# check if output directory already exist
+# check if input directory already exist
 # If not, then throw exception.
-if not os.path.exists(inputFolderPath):
-    raise Exception(f"Invalid input directory path: {inputFolderPath}")
+if not os.path.exists(trainFolderPath):
+    raise Exception(f"Invalid input directory path: {trainFolderPath}")
+
+# check if input directory already exist
+# If not, then throw exception.
+if not os.path.exists(testFolderPath):
+    raise Exception(f"Invalid input directory path: {testFolderPath}")
 
 '''
 Common method that applies given augmentation technique over all images in given folder.
@@ -50,26 +56,30 @@ def performAugmentation(inputFolderPath, outputRootFolderPath, technique, techni
             img1 = technique.apply(img)
             cv2.imwrite(outputFilePath,img1)
             
-# Augmentation 1
-# Rotate 140 degrees.
-outputRootFolderPath = "../../Data/Augmented/rotate_140"
+# Augmentation 1 - Rotate 140 degrees.
+outputTrainRootFolderPath = "../../Data/Augmented/train_rotated_140_degree"
+outputTestRootFolderPath = "../../Data/Augmented/test_rotated_140_degree"
 technique = createTechnique("rotate", {"angle" : 140})
-performAugmentation(inputFolderPath, outputRootFolderPath, technique, "Rotate 140 degrees.")
+performAugmentation(trainFolderPath, outputTrainRootFolderPath, technique, "Train Rotate 140 degrees.")
+performAugmentation(testFolderPath, outputTestRootFolderPath, technique, "Test Rotate 140 degrees.")
 
-# Augmentation 2
-# Rotate 120 degrees.
-outputRootFolderPath = "../../Data/Augmented/rotate_120"
+# Augmentation 2 - Rotate 120 degrees.
+outputTrainRootFolderPath = "../../Data/Augmented/train_rotated_120_degree"
+outputTestRootFolderPath = "../../Data/Augmented/test_rotated_120_degree"
 technique = createTechnique("rotate", {"angle" : 120})
-performAugmentation(inputFolderPath, outputRootFolderPath, technique, "Rotate 120 degrees.")
+performAugmentation(trainFolderPath, outputTrainRootFolderPath, technique, "Train Rotate 120 degrees.")
+performAugmentation(testFolderPath, outputTestRootFolderPath, technique, "Test Rotate 120 degrees.")
 
-# Augmentation 3
-# Raise blue.
-outputRootFolderPath = "../../Data/Augmented/raise_blue"
+# Augmentation 3 - Raise blue.
+outputTrainRootFolderPath = "../../Data/Augmented/train_raise_blue"
+outputTestRootFolderPath = "../../Data/Augmented/test_raise_blue"
 technique = createTechnique("raise_blue", {"power" : 0.9})
-performAugmentation(inputFolderPath, outputRootFolderPath, technique, "Raise blue.")
+performAugmentation(trainFolderPath, outputTrainRootFolderPath, technique, "Train Raise blue.")
+performAugmentation(testFolderPath, outputTestRootFolderPath, technique, "Test Raise blue.")
 
-# Augmentation 4
-# Flip both (horizontal and vertical).
-outputRootFolderPath = "../../Data/Augmented/flip_both"
+# Augmentation 4 - Flip both (horizontal and vertical).
+outputTrainRootFolderPath = "../../Data/Augmented/train_flip_both"
+outputTestRootFolderPath = "../../Data/Augmented/test_flip_both"
 technique = createTechnique("flip",{"flip":-1})
-performAugmentation(inputFolderPath, outputRootFolderPath, technique, "Flip both")
+performAugmentation(trainFolderPath, outputTrainRootFolderPath, technique, "Train Flip both")
+performAugmentation(testFolderPath, outputTestRootFolderPath, technique, "Test Flip both")
