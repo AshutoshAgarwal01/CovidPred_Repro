@@ -55,31 +55,84 @@ def performAugmentation(inputFolderPath, outputRootFolderPath, technique, techni
             img = cv2.imread(inputFilePath)
             img1 = technique.apply(img)
             cv2.imwrite(outputFilePath,img1)
-            
-# Augmentation 1 - Rotate 140 degrees.
-outputTrainRootFolderPath = "../../Data/Augmented/train_rotated_140_degree"
-outputTestRootFolderPath = "../../Data/Augmented/test_rotated_140_degree"
-technique = createTechnique("rotate", {"angle" : 140})
-performAugmentation(trainFolderPath, outputTrainRootFolderPath, technique, "Train Rotate 140 degrees.")
-performAugmentation(testFolderPath, outputTestRootFolderPath, technique, "Test Rotate 140 degrees.")
 
-# Augmentation 2 - Rotate 120 degrees.
-outputTrainRootFolderPath = "../../Data/Augmented/train_rotated_120_degree"
-outputTestRootFolderPath = "../../Data/Augmented/test_rotated_120_degree"
-technique = createTechnique("rotate", {"angle" : 120})
-performAugmentation(trainFolderPath, outputTrainRootFolderPath, technique, "Train Rotate 120 degrees.")
-performAugmentation(testFolderPath, outputTestRootFolderPath, technique, "Test Rotate 120 degrees.")
+# Augmentation 1-6 - Rotate
+angles = [45, 60, 90, 120, 140, 160]
+for angle in angles:
+    outputTrainRootFolderPath = f"../../Data/Augmented/train_rotated_{angle}_degree"
+    outputTestRootFolderPath = f"../../Data/Augmented/test_rotated_{angle}_degree"
+    technique = createTechnique("rotate", {"angle" : angle})
+    performAugmentation(trainFolderPath, outputTrainRootFolderPath, technique, f"Train Rotate {angle} degrees.")
+    performAugmentation(testFolderPath, outputTestRootFolderPath, technique, f"Test Rotate {angle} degrees.")    
 
-# Augmentation 3 - Raise blue.
-outputTrainRootFolderPath = "../../Data/Augmented/train_raise_blue"
-outputTestRootFolderPath = "../../Data/Augmented/test_raise_blue"
-technique = createTechnique("raise_blue", {"power" : 0.9})
-performAugmentation(trainFolderPath, outputTrainRootFolderPath, technique, "Train Raise blue.")
-performAugmentation(testFolderPath, outputTestRootFolderPath, technique, "Test Raise blue.")
+# Augmentation 7-9 - crop
+percentages = [0.5, 0.7, 0.9]
+for percentage in percentages:
+    outputTrainRootFolderPath = f"../../Data/Augmented/train_crop_{percentage}"
+    outputTestRootFolderPath = f"../../Data/Augmented/test_crop_{percentage}"
+    technique = createTechnique("crop", {"percentage": percentage,"startFrom": "TOPLEFT"})
+    performAugmentation(trainFolderPath, outputTrainRootFolderPath, technique, f"Train Crop {percentage}.")
+    performAugmentation(testFolderPath, outputTestRootFolderPath, technique, f"Test Crop {percentage}.")    
 
-# Augmentation 4 - Flip both (horizontal and vertical).
-outputTrainRootFolderPath = "../../Data/Augmented/train_flip_both"
-outputTestRootFolderPath = "../../Data/Augmented/test_flip_both"
-technique = createTechnique("flip",{"flip":-1})
-performAugmentation(trainFolderPath, outputTrainRootFolderPath, technique, "Train Flip both")
-performAugmentation(testFolderPath, outputTestRootFolderPath, technique, "Test Flip both")
+# Augmentation 10-12 - flip
+directions = {0: "hor", 1: "ver", -1: "both"}
+for d in directions:
+    dname = directions[d]
+    outputTrainRootFolderPath = f"../../Data/Augmented/train_flip_{dname}"
+    outputTestRootFolderPath = f"../../Data/Augmented/test_flip_{dname}"
+    technique = createTechnique("flip", {"flip": d})
+    performAugmentation(trainFolderPath, outputTrainRootFolderPath, technique, f"Train flip {dname}.")
+    performAugmentation(testFolderPath, outputTestRootFolderPath, technique, f"Test flip {dname}.")    
+
+# Augmentation 13-16 - raise color
+colors = {"raise_blue": "blue", "raise_green": "green", "raise_hue": "hue", "raise_red": "red"}
+for c in colors:
+    cname = colors[c]
+    outputTrainRootFolderPath = f"../../Data/Augmented/train_raise_{cname}"
+    outputTestRootFolderPath = f"../../Data/Augmented/test_raise_{cname}"
+    technique = createTechnique("flip", {"flip": c})
+    performAugmentation(trainFolderPath, outputTrainRootFolderPath, technique, f"Train raise {cname}.")
+    performAugmentation(testFolderPath, outputTestRootFolderPath, technique, f"Test raise {cname}.")    
+
+# Augmentation 17 - median blur
+outputTrainRootFolderPath = "../../Data/Augmented/train_median_blur"
+outputTestRootFolderPath = "../../Data/Augmented/test_median_blur"
+technique = createTechnique("median_blur", {"kernel" : 5})
+performAugmentation(trainFolderPath, outputTrainRootFolderPath, technique, "Train median_blur.")
+performAugmentation(testFolderPath, outputTestRootFolderPath, technique, "Test median_blur.")
+
+# Augmentation 18-22 - other parameterless techniques
+othertechniques = {
+    "change_to_hsv": "change_to_hsv",
+    "change_to_lab": "change_to_lab",
+    "equalize_histogram": "equalize_histogram",
+    "invert": "invert",
+    "sharpen": "sharpen"}
+
+for tech in othertechniques:
+    outputTrainRootFolderPath = f"../../Data/Augmented/train_{tech}"
+    outputTestRootFolderPath = f"../../Data/Augmented/test_{tech}"
+    technique = createTechnique(tech, {})
+    performAugmentation(trainFolderPath, outputTrainRootFolderPath, technique, f"Train {tech}.")
+    performAugmentation(testFolderPath, outputTestRootFolderPath, technique, f"Test {tech}.")
+
+# Augmentation 23  - shearing
+outputTrainRootFolderPath = f"../../Data/Augmented/train_shearing"
+outputTestRootFolderPath = f"../../Data/Augmented/test_shearing"
+technique = createTechnique("shearing", {"a":0.5})
+performAugmentation(trainFolderPath, outputTrainRootFolderPath, technique, f"Train shearing.")
+performAugmentation(testFolderPath, outputTestRootFolderPath, technique, f"Test shearing.")
+
+# Augmentation 24 - resize
+outputTrainRootFolderPath = f"../../Data/Augmented/train_resize"
+outputTestRootFolderPath = f"../../Data/Augmented/test_resize"
+technique = createTechnique("resize", {"percentage" : 0.9, "method": "INTER_NEAREST"})
+performAugmentation(trainFolderPath, outputTrainRootFolderPath, technique, f"Train resize.")
+performAugmentation(testFolderPath, outputTestRootFolderPath, technique, f"Test resize.")
+
+# Augmentation 25 - gamma
+outputTrainRootFolderPath = f"../../Data/Augmented/train_gamma"
+outputTestRootFolderPath = f"../../Data/Augmented/test_gamma"
+technique = createTechnique("gamma", {"gamma":1.5})
+performAugmentation(trainFolderPath, outputTrainRootFolderPath, technique, f"Train gamma.")
+performAugmentation(testFolderPath, outputTestRootFolderPath, technique, f"Test gamma.")
