@@ -11,6 +11,7 @@ from clodsa.techniques.techniqueFactory import createTechnique
 import cv2
 import numpy as np
 import os
+import time
 
 trainFolderPath = "../../Data/train"
 testFolderPath = "../../Data/test"
@@ -56,6 +57,8 @@ def performAugmentation(inputFolderPath, outputRootFolderPath, technique, techni
             img1 = technique.apply(img)
             cv2.imwrite(outputFilePath,img1)
 
+start = time.time()
+
 # Augmentation 1-6 - Rotate
 angles = [45, 60, 90, 120, 140, 160]
 for angle in angles:
@@ -90,7 +93,7 @@ for c in colors:
     cname = colors[c]
     outputTrainRootFolderPath = f"../../Data/Augmented/train_raise_{cname}"
     outputTestRootFolderPath = f"../../Data/Augmented/test_raise_{cname}"
-    technique = createTechnique("flip", {"flip": c})
+    technique = createTechnique(c, {"power" : 0.9})
     performAugmentation(trainFolderPath, outputTrainRootFolderPath, technique, f"Train raise {cname}.")
     performAugmentation(testFolderPath, outputTestRootFolderPath, technique, f"Test raise {cname}.")    
 
@@ -136,3 +139,16 @@ outputTestRootFolderPath = f"../../Data/Augmented/test_gamma"
 technique = createTechnique("gamma", {"gamma":1.5})
 performAugmentation(trainFolderPath, outputTrainRootFolderPath, technique, f"Train gamma.")
 performAugmentation(testFolderPath, outputTestRootFolderPath, technique, f"Test gamma.")
+
+# Calculate execution time
+end = time.time()
+dur = end-start
+print("")
+if dur < 60:
+    print("Execution Time:",dur,"seconds")
+elif dur > 60 and dur < 3600:
+    dur=dur/60
+    print("Execution Time:",dur,"minutes")
+else:
+    dur=dur/(60*60)
+    print("Execution Time:",dur,"hours")
