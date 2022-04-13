@@ -23,9 +23,6 @@ non_covid_virus_list = ["Pneumonia/Viral/SARS", "Pneumonia/Fungal/Pneumocystis",
 non_covid = "Pneumonia/Viral/COVID-19" # rows for covid
 x_ray_view = "PA" # View of X-Ray
 
-# Skip files without failing that were not found
-skipNotFound = True
-
 metadata = "../../Data/FullSet/ieee8023_covid-chestxray-dataset/metadata.csv" # Meta info
 imageDir = "../../Data/FullSet/ieee8023_covid-chestxray-dataset/images" # Directory of images
 covidOutputDir = '../../Data/FinalSet/covid_19' # Output directory to store selected images
@@ -44,9 +41,6 @@ for (i, row) in metadata_csv.iterrows():
     if row["view"] == x_ray_view and not (math.isnan(row["age"]) or row["age"] < 19 or row["age"] > 99):
         filename = row["filename"].split(os.path.sep)[-1]
         filePath = os.path.sep.join([imageDir, filename])
-
-        if not os.path.exists(filePath) and skipNotFound:
-            continue
 
         # If finding was not covid then copy images to non_covid_19 folder.
         if row["finding"] == covid:
