@@ -95,9 +95,13 @@ def read_train_sets(train_path, image_size, classes, validation_size):
   class DataSets(object):
     pass
   data_sets = DataSets()
-
+  
+  # Repro - new code
+  seed = 41222
+  
   images, labels, img_names, cls = load_train(train_path, image_size, classes)
-  images, labels, img_names, cls = shuffle(images, labels, img_names, cls)  
+  # images, labels, img_names, cls = shuffle(images, labels, img_names, cls)  
+  images, labels, img_names, cls = shuffle(images, labels, img_names, cls, random_state = seed)  
 
   if isinstance(validation_size, float):
     validation_size = int(validation_size * images.shape[0])
