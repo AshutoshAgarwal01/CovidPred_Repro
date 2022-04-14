@@ -1,3 +1,7 @@
+'''
+This script is based on original work done in Git repository https://github.com/arunsharma8osdd/covidpred
+'''
+
 import cv2
 import os
 import glob

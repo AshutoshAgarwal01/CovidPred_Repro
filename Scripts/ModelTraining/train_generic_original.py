@@ -1,8 +1,32 @@
+'''
+This script is based on original work done in Git repository https://github.com/arunsharma8osdd/covidpred
+
+We have modified this script to train one CNN model for multiple scenarios in one go. Which makes investigation easier.
+
+Pre-requisites: Following are the pre-requisites that should be fulfilled before executing this script.
+    1. Training data should exist in folders given by variable train_path.
+
+Following variables should be modified in order to validate specific scenario.
+    1. datasets: Add list of scenarios for which you need to train the model. Full list of scenarios is given under variable full_list_datasets.
+    2. final_iter: This variable should be calculated according to number of epochs required.
+    3. batch_size: desired batch size. 
+
+Outputs: Following outputs will be created after executing this script.
+    1. Logfile: In the same folder from where this script was executed.
+    2. Trained model: Trained model and other files will be stored in directory indicated in method 'train' 
+    2. Plot : Plot of validation and training accuracies per epoch. This plot can be found in the directory where model will be stored.
+
+NOTE: Due to a bug in the script, traning multiple models at once works but their validation does not work when we use validate script.
+therefore please use one scenario at a time when using this script. Please close python session and start new session before training new scenario.    
+
+If you need to train multiple scenarios in parallel then make copies of this script and change scenario name in 'datasets' variable accordingly.
+'''
 import logging
 import dataset
 # import tensorflow as tf
 import tensorflow.compat.v1 as tf
 import time
+from datetime import datetime
 import matplotlib.pyplot as plt
 import numpy as np
 import os
@@ -10,7 +34,8 @@ import os
 # Ashutosh Code
 tf.disable_v2_behavior() 
 
-logging.basicConfig(level=logging.DEBUG, filename="training_logfile.txt", filemode="w+", format="%(asctime)-15s %(levelname)-8s %(message)s")
+tstamp = datetime.now().strftime("%Y_%m_%d-%I_%M_%S_%p")
+logging.basicConfig(level=logging.DEBUG, filename=f"training_original_logfile_{tstamp}.txt", filemode="w+", format="%(asctime)-15s %(levelname)-8s %(message)s")
 
 ##################################################################################
 # Function to create weights.
@@ -97,26 +122,19 @@ def create_fc_layer(input,
 ##################################################################################
 # Display all stats for every epoch
 ##################################################################################
-# def show_progress(epoch, feed_dict_train, feed_dict_validate, val_loss, total_epochs, session, accuracy):
-def show_progress(epoch_no, feed_dict_train, feed_dict_validate, val_loss, total_epochs, session, accuracy):
-    acc = session.run(accuracy, feed_dict=feed_dict_train)
-    val_acc = session.run(accuracy, feed_dict=feed_dict_validate)
+# def show_progress(epoch_no, feed_dict_train, feed_dict_validate, val_loss, total_epochs, session, accuracy):
+def show_progress(epoch_no, acc, val_acc, val_loss, total_epochs):
     msg = "Training Epoch {0}/{4} --- Training Accuracy: {1:>6.1%}, Validation Accuracy: {2:>6.1%},  Validation Loss: {3:.3f}"
-    
-    # print_and_log(msg.format(epoch + 1, acc, val_acc, val_loss, total_epochs))
     print_and_log(msg.format(epoch_no, acc, val_acc, val_loss, total_epochs))
-    
-    # epoch_no = epoch + 1
-    acc_arr.append(acc)
-    val_acc_arr.append(val_acc)
-    val_loss_arr.append(val_loss)
-    epoch_arr.append(epoch_no)
 
 ##################################################################################
 # Training function
 ##################################################################################
-def train(total_iterations, filename, session, saver, data, batch_size, optimizer, cost):
-    # toal_iterations - 23 * 576 for combined, 550 for others.
+def train(total_iterations, filename, session, saver, data, batch_size, optimizer, cost, accuracy):
+    acc_arr = []
+    val_acc_arr = []
+    val_loss_arr = []
+    epoch_arr = []
 
     epoch_size = int(data.train.num_examples/batch_size) # 576 for combined dataset, 23 for other data.
     total_epochs = int(total_iterations / epoch_size) + 1 # 24
@@ -137,16 +155,27 @@ def train(total_iterations, filename, session, saver, data, batch_size, optimize
         # if i % int(data.train.num_examples/batch_size) == 0: 
         if i % epoch_size == 0: 
             val_loss = session.run(cost, feed_dict=feed_dict_val)
-            # epoch = int(i / int(data.train.num_examples/batch_size))
-            epoch = int(i / epoch_size) + 1 # adding one because first epoch is zero.
-
-            # total_epochs = int(total_iterations/int(data.train.num_examples/batch_size)) + 1
-            show_progress(epoch, feed_dict_tr, feed_dict_val, val_loss, total_epochs, session, accuracy)
             
+            acc = session.run(accuracy, feed_dict=feed_dict_tr)
+            val_acc = session.run(accuracy, feed_dict=feed_dict_val)
+
+            epoch = int(i / epoch_size) + 1 # adding one because first epoch is zero.
+            
+            # show_progress(epoch, feed_dict_tr, feed_dict_val, val_loss, total_epochs, session, accuracy)
+            show_progress(epoch, acc, val_acc, val_loss, total_epochs)
+            
+            # Update array.
+            acc_arr.append(acc)
+            val_acc_arr.append(val_acc)
+            val_loss_arr.append(val_loss)
+            epoch_arr.append(epoch)
+
             # Save model every 3rd epoch or on last epoch.
             if (epoch == 1 or epoch % 3 == 0 or epoch == total_epochs):
                 print_and_log ("Saving model...")
                 saver.save(session, f'c:/temp/Model_{filename}/trained_model') ### To save model with the name specified in this line
+    
+    return acc_arr, val_acc_arr, val_loss_arr, epoch_arr
 
 ##################################################################################
 # Code to graphically plot the Validation loss and Training, Validation accuracy
@@ -169,7 +198,7 @@ def createPlot(datasetname, title, epoch_array, acc_array, val_acc_array, val_lo
     plt.legend(loc = 'upper right')
 
     ## Figure save location and figure name
-    plt.savefig(f"Model_{datasetname}/{filename}.png")
+    plt.savefig(f"c:/temp/Model_{datasetname}/{filename}.png")
 
 ##################################################################################
 # function to print duration
@@ -198,15 +227,16 @@ def print_and_log(message):
 
 # Total iterations
 # final_iter = 400 # (For 24 Epochs, original dataset used by authors)
-# final_iter = 550 # (For 24 Epochs, repro dataset)
+final_iter = 529 # (For 24 Epochs, 23 iterations per epoch, batch size 16, repro dataset)
 
-# final_iter = 23 * 576 # (For 24 Epochs, 23 iterations per epoch, combined repro dataset)
-final_iter = 23 * 576 # (For 24 Epochs, 23 iterations per epoch, combined repro dataset)
+# final_iter = 23 * 288 # (For 24 Epochs, 23 iterations per epoch, batch size 32, combined repro dataset)
+# final_iter = 23 * 576 # (For 24 Epochs, 23 iterations per epoch, batch size 16, combined repro dataset)
 
 # count of epochs
 epoch_count = 24
 
 # Assign the batch value
+# batch_size = 32 # Use it only for combined dataset and final_iter = 23 * 288
 batch_size = 16
 
 # Uncomment following for quick testing with smaller dataset.
@@ -232,8 +262,8 @@ num_filters_conv3 = 128
     
 fc_layer_size = 256
 
-# Augmented datasets that need to be executed.
-datasets1 = ['train_combined',
+# Full list of datasets/ scenarios that can be executed.
+full_list_datasets = ['train_combined',
 'train_change_to_hsv',
 'train_change_to_lab',
 'train_crop_0.5',
@@ -258,31 +288,24 @@ datasets1 = ['train_combined',
 'train_rotated_60_degree',
 'train_rotated_90_degree',
 'train_sharpen',
-'train_shearing']
+'train_shearing',
+'train_original']
 
-datasets = ['train_combined']
+# datasets = ['train_rotated_120_degree', 'train_rotated_140_degree', 'train_original']
+datasets = ['train_original']
 
 ##################################################################################
 # Execute.
 ##################################################################################
 
-acc_arr = []
-val_acc_arr = []
-val_loss_arr = []
-epoch_arr = []
-
 for filename in datasets:
+    start = time.time()
+    session = tf.compat.v1.Session()
     try:
         print_and_log ("********************************************************")
         print_and_log (f"Starting dataset {filename}")
         print_and_log ("********************************************************")
         print_and_log ("")
-        start = time.time()
-    
-        acc_arr = []
-        val_acc_arr = []
-        val_loss_arr = []
-        epoch_arr = []
     
         # Training images path    
         # Augmented Dataset Path to Train model on 120 degree rotated (augmented) images
@@ -304,7 +327,7 @@ for filename in datasets:
         print_and_log("Number of files in Training-set:\t\t{}".format(len(data.train.labels)))
         print_and_log("Number of files in Validation-set:\t{}".format(len(data.valid.labels)))
     
-        session = tf.compat.v1.Session()
+        # session = tf.compat.v1.Session()
         x = tf.placeholder(tf.float32, shape=[None, img_size, img_size, num_channels], name='x')
     
         ## labels
@@ -343,9 +366,11 @@ for filename in datasets:
     
         y_pred_cls = tf.argmax(y_pred, dimension = 1)
         session.run(tf.global_variables_initializer())
+
         cross_entropy = tf.nn.softmax_cross_entropy_with_logits_v2(logits = layer_fc2, labels = y_true)
         cost = tf.reduce_mean(cross_entropy)
         optimizer = tf.train.AdamOptimizer(learning_rate = 1e-4).minimize(cost)
+
         correct_prediction = tf.equal(y_pred_cls, y_true_cls)
         accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
     
@@ -354,15 +379,14 @@ for filename in datasets:
         saver = tf.train.Saver()
     
         print_and_log("")
-        train(final_iter, filename, session, saver, data, batch_size, optimizer, cost)
-        # train(num_iteration = final_iter)
-    
-        end = time.time()
-        duration = end-start
+        acc_arr, val_acc_arr, val_loss_arr, epoch_arr = train(final_iter, filename, session, saver, data, batch_size, optimizer, cost, accuracy)
 
         createPlot(f'{filename}', filename[6:], epoch_arr, acc_arr, val_acc_arr, val_loss_arr)
-        print_duration(duration)
 
     except Exception as e:
-        print("Exception", e)
         print_and_log(f"Exception: {str(e)}")
+    finally:
+        end = time.time()
+        duration = end-start
+        session.close()
+        print_duration(duration)
