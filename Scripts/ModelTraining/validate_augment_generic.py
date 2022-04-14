@@ -1,4 +1,24 @@
+'''
+This script is used to validate a pre-trained model with unseen data.
+This script is based on original work done in Git repository https://github.com/arunsharma8osdd/covidpred
+
+We have modified this script to run multiple scenarios in one go. Which makes investigation easier.
+
+Pre-requisites: Following are the pre-requisites that should be fulfilled before executing this script.
+    1. Training and testing data should exist in folders given by variable train_p and testfolder respectively.
+    2. Pre-trained models should be present in folder given by variable model_p
+
+Following variables should be modified in order to validate specific scenario.
+    datasets: Add list of scenarios that you need to validate. Full list of scenarios is given under variable full_list_datasets.
+
+Outputs: Following outputs will be created after executing this script.
+    1. Logfile: In the same folder from where this script was executed.
+    2. ValidationResult.csv: This file will contain confustion matrix for each scenario (a.k.a. dataset) in it's respective model folder (model_p)
+
+'''
+
 from __future__ import division
+from datetime import datetime
 import logging
 # import tensorflow as tf
 import tensorflow.compat.v1 as tf
@@ -12,9 +32,8 @@ import pandas as pd
 # Ashutosh Code
 tf.disable_v2_behavior() 
 
-logging.basicConfig(level=logging.DEBUG, filename="testing_logfile.txt", filemode="w+", format="%(asctime)-15s %(levelname)-8s %(message)s")
-
-resultFilePath = 'ValidationResult.csv'
+tstamp = datetime.now().strftime("%Y_%m_%d-%I_%M_%S_%p")
+logging.basicConfig(level=logging.DEBUG, filename=f"testing_logfile_{tstamp}.txt", filemode="w+", format="%(asctime)-15s %(levelname)-8s %(message)s")
 
 '''
 Prints message to console and logs it into a logfile as well.
@@ -29,8 +48,8 @@ def print_and_log(message):
 
 all_varities = ['Normal','covid_19','non_covid_19','Pneumonia','TB']
 
-# Augmented datasets that need to be executed.
-datasets1 = ['train_combined',
+# Full list of datasets/ scenarios that can be executed.
+full_list_datasets = ['train_combined',
 'train_change_to_hsv',
 'train_change_to_lab',
 'train_crop_0.5',
@@ -55,20 +74,26 @@ datasets1 = ['train_combined',
 'train_rotated_60_degree',
 'train_rotated_90_degree',
 'train_sharpen',
-'train_shearing']
+'train_shearing',
+'train_original']
 
-datasets = ['train_combined']
+datasets = ['train_rotated_120_degree', 'train_rotated_140_degree', 'train_original']
 
-result_data = []
+resultFileName = 'ValidationResult.csv'
 
 for dataset_name in datasets:
+    result_data = []
+
     # Training images path (will be used for class index reading)
     train_p = rf'../../Data/Augmented/{dataset_name}'
-    testfolder = f"test_{dataset_name[6:]}"
+    testfolder = rf'../../Data/Augmented/test_{dataset_name[6:]}/'
 
     # Saved model directory path
-    model_p = f'Model_{dataset_name}'    
+    model_p = f'c:/temp/Model_{dataset_name}'
     model_p2 = model_p+'/trained_model.meta'
+
+    # Result file path
+    resultFilePath = f"{model_p}/{resultFileName}"
 
     # Let us restore the saved model 
     sess = tf.Session()
@@ -84,7 +109,8 @@ for dataset_name in datasets:
 
     for vrty in all_varities:
         # Validation set images directory path    
-        test_p = rf'../../Data/Augmented/{testfolder}/'+vrty	
+        # test_p = rf'../../Data/Augmented/{testfolder}/'+vrty	
+        test_p = testfolder + vrty	
     
         pred_class_arr = []
     
@@ -215,9 +241,12 @@ for dataset_name in datasets:
                 print_and_log(vrrt+": 0%")
             class_result.append(acc)
         result_data.append(class_result)
-
-df = pd.DataFrame(result_data, columns = ['model_name', 'image_count', 'test_label', 'Normal','covid_19','non_covid_19','Pneumonia','TB'])
-df.to_csv(resultFilePath)
+    
+    df = pd.DataFrame(result_data, columns = ['model_name', 'image_count', 'test_label', 'Normal','covid_19','non_covid_19','Pneumonia','TB'])
+    df.to_csv(resultFilePath)
+    
+    # Close the session before validating next scenario/ dataset.
+    sess.close()
 
 # Calculate execution time
 end = time.time()
