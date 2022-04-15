@@ -1,0 +1,283 @@
+%
+% File acl2021.tex
+%
+%% Based on the style files for EMNLP 2020, which were
+%% Based on the style files for ACL 2020, which were
+%% Based on the style files for ACL 2018, NAACL 2018/19, which were
+%% Based on the style files for ACL-2015, with some improvements
+%%  taken from the NAACL-2016 style
+%% Based on the style files for ACL-2014, which were, in turn,
+%% based on ACL-2013, ACL-2012, ACL-2011, ACL-2010, ACL-IJCNLP-2009,
+%% EACL-2009, IJCNLP-2008...
+%% Based on the style files for EACL 2006 by 
+%%e.agirre@ehu.es or Sergi.Balari@uab.es
+%% and that of ACL 08 by Joakim Nivre and Noah Smith
+
+\documentclass[11pt,a4paper]{article}
+\usepackage[hyperref]{acl2021}
+\usepackage{times}
+\usepackage{latexsym}
+\renewcommand{\UrlFont}{\ttfamily\small}
+\usepackage{graphicx}
+\usepackage{tabularx}
+\graphicspath{ {./Artifact/} }
+
+% This is not strictly necessary, and may be commented out,
+% but it will improve the layout of the manuscript,
+% and will typically save some space.
+\usepackage{microtype}
+
+\aclfinalcopy % Uncomment this line for the final submission
+%\def\aclpaperid{***} %  Enter the acl Paper ID here
+
+%\setlength\titlebox{5cm}
+% You can expand the titlebox if you need extra space
+% to show all the authors. Please do not make the titlebox
+% smaller than 5cm (the original size); we will check this
+% in the camera-ready version and ask you to change it back.
+
+% Content lightly modified from original work by Jesse Dodge and Noah Smith
+
+
+\newcommand\BibTeX{B\textsc{ib}\TeX}
+
+\title{CS598 DL4H Spring 2022 Project Draft}
+
+\author{Ashutosh Agarwal and Chandan Goel \\
+  \texttt{aa61@illinois.edu, chandan3@illinois.edu}
+  \\[2em]
+  Group ID: X (TBD), Paper ID: External (link TBD)\\
+  Presentation link (TODO): \url{https://www.youtube.com} \\
+  Code link: \url{https://github.com/AshutoshAgarwal01/CovidPred_Repro}} 
+
+\begin{document}
+\maketitle
+
+% All sections are mandatory.
+% Keep in mind that your page limit is 8, excluding references.
+% For specific grading rubrics, please see the project instruction.
+
+\section{Introduction}
+This work is done to build efficient deep leaning models using the convolutional neural network (CNN) using a very limited set of chest X-ray images to differentiate COVID-19 cases from healthy cases and other types of illnesses. The overall goal of the paper is to train models such that rapid screening of COVID-19 patients is possible in a non-invasive and automated fashion. 
+
+Several other studies were done before this work to classify COVID-19 patients using chest X-ray images. This study recognizes following issues in classification of COVID-19 based on chest X-ray that result in poor performance of models. 
+
+\begin{itemize}
+\item Scarcity of x-ray images available to train a viable deep learning model. 
+
+\item Biased learning of the deep learning based model when images of multiple age groups are combined together to form a data set. E.g., x-ray images of pediatric patients combined with adult patients. 
+\end{itemize}
+ 
+In this study, authors have applied following techniques to overcome issues mentioned above: 
+
+\begin{itemize}
+\item To overcome scarcity of x-ray images, authors proposed creating a much larger artificial dataset using smaller original dataset. This artificial dataset was created by applying multiple image augmentation techniques on the original data. 
+
+\item Careful image selection: Authors propose to use similar type of images (same view, same age group) to train a very targeted model. This study claims that models built with similar type of images perform better than those models that take a wide variety of images. 
+\end{itemize}
+
+Overall, authors showed that artificially generated x-ray images using image augmentation techniques greatly improved model performance when compared with original smaller set of images. 
+
+\section{Scope of reproducibility}
+
+Due to data scarcity related to COVID-19 chest X-ray images, there was very small set of data available for this work. To overcome this issue, authors artificially generated large number of images using 25 augmentation techniques on original images and used this data for model training purposes. 
+
+    \textit{"This study shows that a deep learning model trained with larger volume of artificially generated X-ray images using image augmentation techniques will have higher accuracy than the model trained with small set of original images."}
+
+Data scarcity is a well-known problem in the field of healthcare analytics, especially when research is aimed at fairly new area e.g., classification of COVID-19 patients when the pandemic just broke out. We are motivated to take on this study as it tries to solve a real life problem which exists across all  healthcare domain. It will not only help improve model performance, but also reduce cost and time involved in getting sufficient size data for any healthcare study.  
+
+\subsection{Addressed claims from the original paper}
+
+We will be testing following two claims from the paper.
+\begin{itemize}
+    \item \textbf{Claim 1}: Model trained with original and augmented images combined results in higher accuracy across all classification labels.
+    
+    Due to data scarcity related to COVID-19 chest X-ray images, there was very small set of data available for this work. It makes model training and validation very difficult. Performance of model was not good. To overcome this issue, authors artificially generated large number of images using 25 augmentation techniques on original images.  
+    
+    Further, authors compared performance of following two models using an unseen external data. 
+
+    \begin{itemize}
+        \item Model with only original images. 
+        \item Model with original images along with augmented images.
+    \end{itemize}
+    
+    Authors concluded that model trained with original and augmented images combined, results in higher accuracy (True positive rate) across classification labels.  In our project work, we want to confirm this claim.
+    
+    \item \textbf{Claim 2}: Models trained with 120 and 140 degree rotated images results in higher accuracy (True positive rate) across classification labels when compared with model trained with original images.
+    
+    Authors showed that models trained with 120 and 140 degree rotated images were complimentary to each other. i.e., if one model performed bad for certain label than other model performed better for the same label. Together, these two models beat performance of model trained with original images. 
+\end{itemize}
+
+
+\section{Methodology}
+The authors of the original paper made a diligent effort for anyone to understand their paper and code easily. They provided link to their GitHub repository \href{https://github.com/arunsharma8osdd/covidpred}{CovidPred} [4] where code was present and they clearly mentioned source of data that they used for their study.
+
+We are planning to write new code for data processing and re-using (with moderate modifications) existing code for model training and testing. Following sections provide more details about this.
+
+\subsection{Model descriptions}
+\textbf{TODO: Describe the models used in the original paper, including the architecture, learning objective and the number of parameters.}
+
+\subsection{Data descriptions}
+Data from following three sources is used in this paper.
+
+\begin{itemize}
+    \item github (Cohen's covid-chestxray-dataset) [1]: This dataset is used to get 'covid 19' and 'non covid 19' images 
+    \item Kaggle NIH dataset [2]: This dataset is used to get Pneumonia images. 
+    \item National Library of medicine [3]: This dataset is used to get normal and TB images. 
+\end{itemize}
+
+Following diagram depicts all steps we performed to gather and process data for model training and validation purposes.
+
+\textbf{TODO: describe steps}
+
+\includegraphics[scale=0.5]{acl-ijcnlp2021-templates/Artifacts/Data_Processing.png}
+\textit {Note: Number in each box represents number of images.}
+
+We filtered images from these datasets using same filtering criteria cited by authors in their paper. Following is the general filtering criteria. 
+
+\begin{itemize}
+    \item Age of patient must be 19 years or older. 
+    \item Only chest X-ray images. 
+    \item X-ray image view must be PA. 
+\end{itemize}
+
+After filtering the data, we divided the dataset into two parts using random sampling. We reserved 10 percent of the data for external validation (test set) and remaining 90 percent for model training (training set).
+
+After this, we created 25 new datasets by applying different augmentation techniques on original set of training and test images. Some of the augmentation techniques used are:
+\begin{itemize}
+    \item Rotate images by 45, 60, 90, 120, 140 and 160 degrees
+    \item Raise blue, green, red and hue
+    \item Crop images
+    \item Flip images horizontally, vertically and in both directions.
+    \item Introduce blur to the images.
+\end{itemize}
+
+We used CloDSA [5] library for image augmentation.
+
+We further created one more dataset by combining original dataset and all augmented datasets. Thus we had total 27 datasets. Following table shows distribution of images.
+\includegraphics[scale=0.4]{acl-ijcnlp2021-templates/Artifacts/Data_Distribution.png}
+
+\subsection{Hyperparameters}
+
+For initial reproduction work, we used same hyperparameters used in the paper except number of iterations. Following table describes the hyperparameters and their values across different datasets.
+
+Green boxes represent hyperparameters that were modified for our study. We had to modify these hyperparameters since number of images in our study and original study was different.
+\includegraphics[scale=0.5]{acl-ijcnlp2021-templates/Artifacts/Hyperparameters.png}
+
+\subsection{Implementation}
+We thoroughly studied the code available in author's git repository [4]. Following is distribution of code that we wrote and re-used.
+
+\begin{itemize}
+    \item Data processing: We wrote our own code from scratch for data processing. 
+    \item Model training and validation: We made some improvements in existing code like logging, refactoring, minor performance improvements and training/ validating models using multiple datasets by one script etc. But overall, it is heavily inspired by original work.
+\end{itemize}
+
+Code written for reproduction work can be found here: \url{https://github.com/AshutoshAgarwal01/CovidPred_Repro}
+
+\subsection{Computational requirements}
+In the proposal we mentioned that we will use GPU if training model with large dataset (all augmented images combined) takes very long time. However in our initial runs, even the largest dataset completed in reasonable amount of time. Therefore we decided to use the alternate in-premise CPU based hardware. Following table (Table 1) shows configuration of desktop that we used. 
+
+\begin{center}
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{| m{5em} | m{6cm} |}
+        \hline
+         Processor &  Intel(R) Xeon(R) CPU E5-1650 v4 @ 3.60GHz   3.60 GHz  \\
+         \hline
+         Number of cores & 6 \\
+         \hline
+         Memory & 32 GB \\
+         \hline
+         OS & Windows 10 Enterprise \\
+         \hline
+    \end{tabular}
+    \caption{Machine configuration}
+    \label{tab:my_label}
+\end{table}
+\end{center}
+
+Table 2 details summary of CPU time, disk space and memory we consumed for completing one execution of experiment. This includes data processing, model training and testing.
+
+\begin{center}
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{| m{5cm} | m{4em} |}
+        \hline
+         Total disk space needed & 121 GB  \\
+         \hline
+         Total CPU time & ~ 9 hours \\
+         \hline
+         Max memory requirement exclusively for the CPU process running the code. & 8 GB \\
+         \hline
+         Suggested minimum machine memory (including OS and other processes) to run this experiment. & 32 GB \\
+         \hline
+    \end{tabular}
+    \caption{Summary of resources}
+    \label{tab:my_label}
+\end{table}
+\end{center}
+
+Following table summarizes total time and average time per epoch for each model.
+\includegraphics[scale=0.47]{acl-ijcnlp2021-templates/Artifacts/Training_Time.png}
+
+Total size of original, filtered, augmented and combined data together was \textbf{119 GB} on disk.
+
+\section{Results}
+Our reproduction study did not result in exact same accuracy numbers as the original study. However overall trend of the accuracy (true positive) per label is consistent with the original study.
+
+The results obtained by our reproduction study support both the claims cited in section 2 of this paper. We will describe them in following sections.
+
+% The number of subsections for results should be the same as the number of hypotheses you are trying to verify.
+
+\subsection{Result 1}
+The paper claimed that model trained with original and augmented images combined results in higher accuracy (true positive) across all classification labels when compared with model trained with original images only.
+
+Following table summarizes true positive rate (proportions of images correctly classified by the model for given label) of both models on unseen original data.
+
+We can see that model trained with combined dataset outperforms model trained with original images only with large difference. This upholds the paper's conclusion that it performs much better than the baseline.
+\includegraphics[scale=0.67]{acl-ijcnlp2021-templates/Artifacts/Perf_comp_with_combined.png}
+
+\subsection{Result 2}
+Authors showed that models trained with 120 and 140 degree rotated images were complimentary to each other. i.e., if one model performed bad for certain label than other model performed better for the same label. Together, these two models beat performance of model trained with original images. 
+
+Following table summarizes true positive rate (proportions of images correctly classified by the model for given label) for all three models on unseen original data.
+
+We can see that for all labels except Tuberculosis authors' conclusion holds good. However, both augmented models perform worse than baseline for Tuberculosis. Therefore, this claim is only partially supported by our reproduction study. 
+\includegraphics[scale=0.7]{acl-ijcnlp2021-templates/Artifacts/Perf_comp_with_augmented.png}
+
+\subsection{Additional results not present in the original paper}
+
+\textbf{TODO}
+
+\section{Discussion}
+
+TODO
+
+\subsection{What was easy}
+TODO
+
+\subsection{What was difficult}
+TODO
+
+\subsection{Recommendations for reproducibility}
+
+TODO
+
+\section{Communication with original authors}
+TODO
+
+
+\bibliographystyle{acl_natbib}
+\bibliography{acl2021}
+
+\begin{enumerate}
+    \item Cohen's covid-chestxray-dataset: \url{https://github.com/ieee8023/covid-chestxray-dataset}
+    \item Kaggle NIH dataset: \url{https://www.kaggle.com/datasets/nih-chest-xrays/data}
+    \item National Library of medicine: \url{https://lhncbc.nlm.nih.gov/LHC-publications/pubs/TuberculosisChestXrayImageDataSets.html}
+    \item CovidPred: \url{https://github.com/arunsharma8osdd/covidpred}
+    \item CloDSA: \url{https://github.com/joheras/CLoDSA}
+\end{enumerate}
+
+%\appendix
+
+\end{document}
