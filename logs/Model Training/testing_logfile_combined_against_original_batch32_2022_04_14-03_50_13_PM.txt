@@ -1,0 +1,53 @@
+2022-04-14 15:50:13,860 INFO     Restoring parameters from c:/temp/Model_train_combined_batch_32/trained_model
+2022-04-14 15:50:16,405 INFO     
+
+Total test images (Normal): 6
+2022-04-14 15:50:16,407 INFO     Prediction	Proportion (%)
+
+2022-04-14 15:50:16,407 INFO     Normal: 100.0%
+2022-04-14 15:50:16,408 INFO     covid_19: 0%
+2022-04-14 15:50:16,408 INFO     non_covid_19: 0%
+2022-04-14 15:50:16,408 INFO     Pneumonia: 0%
+2022-04-14 15:50:16,408 INFO     TB: 0%
+2022-04-14 15:50:17,774 INFO     
+
+Total test images (covid_19): 13
+2022-04-14 15:50:17,774 INFO     Prediction	Proportion (%)
+
+2022-04-14 15:50:17,774 INFO     Normal: 0%
+2022-04-14 15:50:17,774 INFO     covid_19: 76.92%
+2022-04-14 15:50:17,775 INFO     non_covid_19: 0%
+2022-04-14 15:50:17,775 INFO     Pneumonia: 15.38%
+2022-04-14 15:50:17,775 INFO     TB: 7.69%
+2022-04-14 15:50:18,193 INFO     
+
+Total test images (non_covid_19): 3
+2022-04-14 15:50:18,193 INFO     Prediction	Proportion (%)
+
+2022-04-14 15:50:18,193 INFO     Normal: 0%
+2022-04-14 15:50:18,193 INFO     covid_19: 33.33%
+2022-04-14 15:50:18,193 INFO     non_covid_19: 33.33%
+2022-04-14 15:50:18,194 INFO     Pneumonia: 33.33%
+2022-04-14 15:50:18,194 INFO     TB: 0%
+2022-04-14 15:50:19,690 INFO     
+
+Total test images (Pneumonia): 16
+2022-04-14 15:50:19,690 INFO     Prediction	Proportion (%)
+
+2022-04-14 15:50:19,690 INFO     Normal: 0%
+2022-04-14 15:50:19,690 INFO     covid_19: 18.75%
+2022-04-14 15:50:19,690 INFO     non_covid_19: 0%
+2022-04-14 15:50:19,690 INFO     Pneumonia: 81.25%
+2022-04-14 15:50:19,691 INFO     TB: 0%
+2022-04-14 15:50:21,265 INFO     
+
+Total test images (TB): 5
+2022-04-14 15:50:21,265 INFO     Prediction	Proportion (%)
+
+2022-04-14 15:50:21,265 INFO     Normal: 0%
+2022-04-14 15:50:21,265 INFO     covid_19: 0%
+2022-04-14 15:50:21,265 INFO     non_covid_19: 0%
+2022-04-14 15:50:21,266 INFO     Pneumonia: 0%
+2022-04-14 15:50:21,266 INFO     TB: 100.0%
+2022-04-14 15:50:21,324 INFO     
+2022-04-14 15:50:21,324 INFO     Execution Time: 1.6329996585845947 seconds

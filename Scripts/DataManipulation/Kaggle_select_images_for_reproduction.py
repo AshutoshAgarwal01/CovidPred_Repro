@@ -8,11 +8,27 @@ Images fulfilling following criteria will be copied to the output folder.
 3. Finding labels = "Pneumonia"
 '''
 
+import logging
+import time
 import pandas as pd
 import shutil
 import os
 import math
 import numpy as np
+
+
+# Specify logfile.
+logging.basicConfig(level=logging.DEBUG, filename="kaggle_filter_log.txt", filemode="w+", format="%(asctime)-15s %(levelname)-8s %(message)s")
+start = time.time()
+
+'''
+Prints message to console and logs it into a logfile as well.
+Parameters:
+    message: message to be logged.
+'''
+def print_and_log(message):
+    print(message)
+    logging.info(message)
 
 pneumonia = "Pneumonia" # rows for pneumonia
 x_ray_view = "PA" # View of X-Ray
@@ -38,3 +54,17 @@ for (i, row) in metadata_csv.iterrows():
                 if os.path.exists(tempFilePath):  # check if file exists in this directory.
                     shutil.copy2(tempFilePath, outputDir)
                     break
+
+# Calculate execution time
+end = time.time()
+dur = end-start
+
+print_and_log("")
+if dur < 60:
+    print_and_log(f"Execution Time: {dur} seconds")
+elif dur > 60 and dur < 3600:
+    dur = dur/60
+    print_and_log(f"Execution Time: {dur} minutes")
+else:
+    dur = dur/(60*60)
+    print_and_log(f"Execution Time: {dur} hours")

@@ -11,10 +11,16 @@ Properties like age and findings for each image are present in folder 'ClinicalR
 Finding labels are categorized as normal or TB. Any image which is not categorized as normal is considered as TB.
 '''
 
+import logging
+import time
 import pandas as pd
 import shutil
 import os
 import math
+
+# Specify logfile.
+logging.basicConfig(level=logging.DEBUG, filename="montgomery_filter_log.txt", filemode="w+", format="%(asctime)-15s %(levelname)-8s %(message)s")
+start = time.time()
 
 normal = "normal" # Finding = normal
 
@@ -26,6 +32,15 @@ tbOutputDir = '../../Data/FinalSet/TB' # Output directory to store selected imag
 
 # Skip files without failing that were not found
 skipNotFound = True
+
+'''
+Prints message to console and logs it into a logfile as well.
+Parameters:
+    message: message to be logged.
+'''
+def print_and_log(message):
+    print(message)
+    logging.info(message)
 
 '''
 Common method that reads all filed in the ClinicalReadings (metadata) folder 
@@ -81,3 +96,17 @@ for (i, row) in metadata_csv.iterrows():
             shutil.copy2(filePath, normalOutputDir)
         else:
             shutil.copy2(filePath, tbOutputDir)
+
+# Calculate execution time
+end = time.time()
+dur = end-start
+
+print_and_log("")
+if dur < 60:
+    print_and_log(f"Execution Time: {dur} seconds")
+elif dur > 60 and dur < 3600:
+    dur = dur/60
+    print_and_log(f"Execution Time: {dur} minutes")
+else:
+    dur = dur/(60*60)
+    print_and_log(f"Execution Time: {dur} hours")
