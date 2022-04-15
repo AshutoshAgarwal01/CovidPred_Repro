@@ -3,6 +3,8 @@ This repository contains code to reproduce results obtained by a research paper 
 
 Link to original research paper: https://www.hindawi.com/journals/ijbi/2020/8889023/
 
+Link to GitHub repository of original research paper: https://github.com/arunsharma8osdd/covidpred
+
 ## Directory Sturcture
 
 ### Data
