@@ -1,0 +1,53 @@
+2022-04-14 09:47:24,767 INFO     Restoring parameters from c:/temp/Model_train_combined_batch_32/trained_model
+2022-04-14 09:48:27,823 INFO     
+
+Total test images (Normal): 156
+2022-04-14 09:48:27,823 INFO     Prediction	Proportion (%)
+
+2022-04-14 09:48:27,823 INFO     Normal: 94.23%
+2022-04-14 09:48:27,823 INFO     covid_19: 0%
+2022-04-14 09:48:27,823 INFO     non_covid_19: 0%
+2022-04-14 09:48:27,823 INFO     Pneumonia: 0.64%
+2022-04-14 09:48:27,824 INFO     TB: 5.13%
+2022-04-14 09:49:03,976 INFO     
+
+Total test images (covid_19): 338
+2022-04-14 09:49:03,976 INFO     Prediction	Proportion (%)
+
+2022-04-14 09:49:03,976 INFO     Normal: 0%
+2022-04-14 09:49:03,976 INFO     covid_19: 77.81%
+2022-04-14 09:49:03,976 INFO     non_covid_19: 5.62%
+2022-04-14 09:49:03,976 INFO     Pneumonia: 13.31%
+2022-04-14 09:49:03,976 INFO     TB: 3.25%
+2022-04-14 09:49:15,359 INFO     
+
+Total test images (non_covid_19): 78
+2022-04-14 09:49:15,359 INFO     Prediction	Proportion (%)
+
+2022-04-14 09:49:15,359 INFO     Normal: 0%
+2022-04-14 09:49:15,359 INFO     covid_19: 44.87%
+2022-04-14 09:49:15,359 INFO     non_covid_19: 29.49%
+2022-04-14 09:49:15,359 INFO     Pneumonia: 25.64%
+2022-04-14 09:49:15,359 INFO     TB: 0%
+2022-04-14 09:49:57,580 INFO     
+
+Total test images (Pneumonia): 416
+2022-04-14 09:49:57,580 INFO     Prediction	Proportion (%)
+
+2022-04-14 09:49:57,580 INFO     Normal: 0.48%
+2022-04-14 09:49:57,580 INFO     covid_19: 15.14%
+2022-04-14 09:49:57,580 INFO     non_covid_19: 0.48%
+2022-04-14 09:49:57,580 INFO     Pneumonia: 83.65%
+2022-04-14 09:49:57,580 INFO     TB: 0.24%
+2022-04-14 09:50:50,216 INFO     
+
+Total test images (TB): 130
+2022-04-14 09:50:50,216 INFO     Prediction	Proportion (%)
+
+2022-04-14 09:50:50,216 INFO     Normal: 16.92%
+2022-04-14 09:50:50,216 INFO     covid_19: 3.85%
+2022-04-14 09:50:50,216 INFO     non_covid_19: 0.77%
+2022-04-14 09:50:50,216 INFO     Pneumonia: 2.31%
+2022-04-14 09:50:50,216 INFO     TB: 76.15%
+2022-04-14 09:50:50,287 INFO     
+2022-04-14 09:50:50,287 INFO     Execution Time: 52.70734739303589 seconds

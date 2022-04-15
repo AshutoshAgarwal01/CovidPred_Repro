@@ -1,0 +1,155 @@
+2022-04-14 00:56:33,738 INFO     Restoring parameters from c:/temp/Model_train_rotated_120_degree/trained_model
+2022-04-14 00:56:41,118 INFO     
+
+Total test images (Normal): 6
+2022-04-14 00:56:41,118 INFO     Prediction	Proportion (%)
+
+2022-04-14 00:56:41,118 INFO     Normal: 100.0%
+2022-04-14 00:56:41,128 INFO     covid_19: 0%
+2022-04-14 00:56:41,128 INFO     non_covid_19: 0%
+2022-04-14 00:56:41,128 INFO     Pneumonia: 0%
+2022-04-14 00:56:41,128 INFO     TB: 0%
+2022-04-14 00:56:43,221 INFO     
+
+Total test images (covid_19): 13
+2022-04-14 00:56:43,221 INFO     Prediction	Proportion (%)
+
+2022-04-14 00:56:43,221 INFO     Normal: 0%
+2022-04-14 00:56:43,221 INFO     covid_19: 84.62%
+2022-04-14 00:56:43,221 INFO     non_covid_19: 15.38%
+2022-04-14 00:56:43,221 INFO     Pneumonia: 0%
+2022-04-14 00:56:43,221 INFO     TB: 0%
+2022-04-14 00:56:43,992 INFO     
+
+Total test images (non_covid_19): 3
+2022-04-14 00:56:43,992 INFO     Prediction	Proportion (%)
+
+2022-04-14 00:56:43,992 INFO     Normal: 0%
+2022-04-14 00:56:43,992 INFO     covid_19: 33.33%
+2022-04-14 00:56:43,992 INFO     non_covid_19: 66.67%
+2022-04-14 00:56:44,002 INFO     Pneumonia: 0%
+2022-04-14 00:56:44,002 INFO     TB: 0%
+2022-04-14 00:56:46,342 INFO     
+
+Total test images (Pneumonia): 16
+2022-04-14 00:56:46,342 INFO     Prediction	Proportion (%)
+
+2022-04-14 00:56:46,342 INFO     Normal: 0%
+2022-04-14 00:56:46,342 INFO     covid_19: 6.25%
+2022-04-14 00:56:46,342 INFO     non_covid_19: 12.5%
+2022-04-14 00:56:46,342 INFO     Pneumonia: 81.25%
+2022-04-14 00:56:46,342 INFO     TB: 0%
+2022-04-14 00:56:52,789 INFO     
+
+Total test images (TB): 5
+2022-04-14 00:56:52,822 INFO     Prediction	Proportion (%)
+
+2022-04-14 00:56:52,842 INFO     Normal: 80.0%
+2022-04-14 00:56:52,852 INFO     covid_19: 0%
+2022-04-14 00:56:52,883 INFO     non_covid_19: 0%
+2022-04-14 00:56:52,923 INFO     Pneumonia: 0%
+2022-04-14 00:56:52,954 INFO     TB: 20.0%
+2022-04-14 00:56:53,463 INFO     Restoring parameters from c:/temp/Model_train_rotated_140_degree/trained_model
+2022-04-14 00:57:01,750 INFO     
+
+Total test images (Normal): 6
+2022-04-14 00:57:01,750 INFO     Prediction	Proportion (%)
+
+2022-04-14 00:57:01,750 INFO     Normal: 100.0%
+2022-04-14 00:57:01,750 INFO     covid_19: 0%
+2022-04-14 00:57:01,750 INFO     non_covid_19: 0%
+2022-04-14 00:57:01,750 INFO     Pneumonia: 0%
+2022-04-14 00:57:01,750 INFO     TB: 0%
+2022-04-14 00:57:03,549 INFO     
+
+Total test images (covid_19): 13
+2022-04-14 00:57:03,549 INFO     Prediction	Proportion (%)
+
+2022-04-14 00:57:03,549 INFO     Normal: 0%
+2022-04-14 00:57:03,549 INFO     covid_19: 23.08%
+2022-04-14 00:57:03,549 INFO     non_covid_19: 76.92%
+2022-04-14 00:57:03,549 INFO     Pneumonia: 0%
+2022-04-14 00:57:03,549 INFO     TB: 0%
+2022-04-14 00:57:04,629 INFO     
+
+Total test images (non_covid_19): 3
+2022-04-14 00:57:04,639 INFO     Prediction	Proportion (%)
+
+2022-04-14 00:57:04,639 INFO     Normal: 0%
+2022-04-14 00:57:04,639 INFO     covid_19: 0%
+2022-04-14 00:57:04,639 INFO     non_covid_19: 100.0%
+2022-04-14 00:57:04,639 INFO     Pneumonia: 0%
+2022-04-14 00:57:04,639 INFO     TB: 0%
+2022-04-14 00:57:06,646 INFO     
+
+Total test images (Pneumonia): 16
+2022-04-14 00:57:06,706 INFO     Prediction	Proportion (%)
+
+2022-04-14 00:57:06,706 INFO     Normal: 0%
+2022-04-14 00:57:06,706 INFO     covid_19: 0%
+2022-04-14 00:57:06,706 INFO     non_covid_19: 12.5%
+2022-04-14 00:57:06,706 INFO     Pneumonia: 87.5%
+2022-04-14 00:57:06,706 INFO     TB: 0%
+2022-04-14 00:57:12,328 INFO     
+
+Total test images (TB): 5
+2022-04-14 00:57:12,328 INFO     Prediction	Proportion (%)
+
+2022-04-14 00:57:12,328 INFO     Normal: 60.0%
+2022-04-14 00:57:12,328 INFO     covid_19: 0%
+2022-04-14 00:57:12,328 INFO     non_covid_19: 0%
+2022-04-14 00:57:12,328 INFO     Pneumonia: 0%
+2022-04-14 00:57:12,328 INFO     TB: 40.0%
+2022-04-14 00:57:12,648 INFO     Restoring parameters from c:/temp/Model_train_original/trained_model
+2022-04-14 00:57:16,493 INFO     
+
+Total test images (Normal): 6
+2022-04-14 00:57:16,493 INFO     Prediction	Proportion (%)
+
+2022-04-14 00:57:16,493 INFO     Normal: 50.0%
+2022-04-14 00:57:16,493 INFO     covid_19: 0%
+2022-04-14 00:57:16,493 INFO     non_covid_19: 0%
+2022-04-14 00:57:16,493 INFO     Pneumonia: 16.67%
+2022-04-14 00:57:16,493 INFO     TB: 33.33%
+2022-04-14 00:57:18,540 INFO     
+
+Total test images (covid_19): 13
+2022-04-14 00:57:18,550 INFO     Prediction	Proportion (%)
+
+2022-04-14 00:57:18,550 INFO     Normal: 0%
+2022-04-14 00:57:18,550 INFO     covid_19: 53.85%
+2022-04-14 00:57:18,550 INFO     non_covid_19: 15.38%
+2022-04-14 00:57:18,550 INFO     Pneumonia: 23.08%
+2022-04-14 00:57:18,550 INFO     TB: 7.69%
+2022-04-14 00:57:19,100 INFO     
+
+Total test images (non_covid_19): 3
+2022-04-14 00:57:19,100 INFO     Prediction	Proportion (%)
+
+2022-04-14 00:57:19,100 INFO     Normal: 0%
+2022-04-14 00:57:19,100 INFO     covid_19: 33.33%
+2022-04-14 00:57:19,100 INFO     non_covid_19: 66.67%
+2022-04-14 00:57:19,100 INFO     Pneumonia: 0%
+2022-04-14 00:57:19,100 INFO     TB: 0%
+2022-04-14 00:57:20,906 INFO     
+
+Total test images (Pneumonia): 16
+2022-04-14 00:57:20,906 INFO     Prediction	Proportion (%)
+
+2022-04-14 00:57:20,906 INFO     Normal: 0%
+2022-04-14 00:57:20,906 INFO     covid_19: 6.25%
+2022-04-14 00:57:20,906 INFO     non_covid_19: 18.75%
+2022-04-14 00:57:20,906 INFO     Pneumonia: 75.0%
+2022-04-14 00:57:20,906 INFO     TB: 0%
+2022-04-14 00:57:23,829 INFO     
+
+Total test images (TB): 5
+2022-04-14 00:57:23,829 INFO     Prediction	Proportion (%)
+
+2022-04-14 00:57:23,829 INFO     Normal: 0%
+2022-04-14 00:57:23,829 INFO     covid_19: 0%
+2022-04-14 00:57:23,829 INFO     non_covid_19: 0%
+2022-04-14 00:57:23,829 INFO     Pneumonia: 20.0%
+2022-04-14 00:57:23,829 INFO     TB: 80.0%
+2022-04-14 00:57:23,919 INFO     
+2022-04-14 00:57:23,919 INFO     Execution Time: 3.0137341022491455 seconds

@@ -12,10 +12,25 @@ This code finds all images of patients of a specified VIRUS and X-Ray view and s
 Code can be modified for any combination of selection of images
 '''
 
+import logging
+import time
 import pandas as pd
 import shutil
 import os
 import math
+
+# Specify logfile.
+logging.basicConfig(level=logging.DEBUG, filename="github_filter_log.txt", filemode="w+", format="%(asctime)-15s %(levelname)-8s %(message)s")
+start = time.time()
+
+'''
+Prints message to console and logs it into a logfile as well.
+Parameters:
+    message: message to be logged.
+'''
+def print_and_log(message):
+    print(message)
+    logging.info(message)
 
 # Selecting all combination of 'COVID-19' patients with 'PA' X-Ray view
 covid = "Pneumonia/Viral/COVID-19" # rows for covid
@@ -47,3 +62,17 @@ for (i, row) in metadata_csv.iterrows():
             shutil.copy2(filePath, covidOutputDir)
         elif row["finding"] in non_covid_virus_list:
             shutil.copy2(filePath, nonCovidOutputDir)
+
+# Calculate execution time
+end = time.time()
+dur = end-start
+
+print_and_log("")
+if dur < 60:
+    print_and_log(f"Execution Time: {dur} seconds")
+elif dur > 60 and dur < 3600:
+    dur = dur/60
+    print_and_log(f"Execution Time: {dur} minutes")
+else:
+    dur = dur/(60*60)
+    print_and_log(f"Execution Time: {dur} hours")
