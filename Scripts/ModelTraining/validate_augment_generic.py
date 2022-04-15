@@ -32,6 +32,7 @@ import pandas as pd
 # Ashutosh Code
 tf.disable_v2_behavior() 
 
+start = time.time()
 tstamp = datetime.now().strftime("%Y_%m_%d-%I_%M_%S_%p")
 logging.basicConfig(level=logging.DEBUG, filename=f"testing_logfile_{tstamp}.txt", filemode="w+", format="%(asctime)-15s %(levelname)-8s %(message)s")
 
@@ -77,7 +78,7 @@ full_list_datasets = ['train_combined',
 'train_shearing',
 'train_original']
 
-datasets = ['train_rotated_120_degree', 'train_rotated_140_degree', 'train_original']
+datasets = ['train_rotated_120_degree', 'train_rotated_140_degree', 'train_combined']
 
 resultFileName = 'ValidationResult.csv'
 
@@ -113,8 +114,6 @@ for dataset_name in datasets:
         test_p = testfolder + vrty	
     
         pred_class_arr = []
-    
-        start = time.time()
     
         try:
             import os
