@@ -1,6 +1,8 @@
 # CovidPred_Repro
 This repository contains code to reproduce results obtained by a research paper which classifies COIVD based on X-Ray images.
 
+Link to original research paper: https://www.hindawi.com/journals/ijbi/2020/8889023/
+
 ## Directory Sturcture
 
 ### Data
