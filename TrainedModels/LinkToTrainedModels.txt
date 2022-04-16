@@ -1,0 +1,8 @@
+We trained following 4 models per this work.
+1. Model_train_original
+2. Model_train_rotated_120_degree
+3. Model_train_rotated_140_degree
+4. Model_train_combined_batch_32
+
+These pre-trained models are stored at following location.
+https://www.dropbox.com/sh/n4gnlj1sxf4z23r/AAA3tfh7BbwTgiEk0oYC2z0la?dl=0
