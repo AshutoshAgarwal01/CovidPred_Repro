@@ -86,7 +86,22 @@ Following steps explain how to create datasets for training using code in this r
 ## How to train models
 Following steps explain how to train models using scripts present in the repository. Model training scripts are present in directory '\Scripts\ModelTraining'
 
-* 
+* train_generic_original.py
+* train_augment_generic_120.py
+* train_augment_generic_140.py
+* train_augment_generic.py
+
+### Output of model training
+
+* Logfiles
+* Trained model files
+
+## How to validate models
+
+### Output of validation
+
+* Logfiles
+* ValidationResult.csv
 
 ## Directory Sturcture
 
