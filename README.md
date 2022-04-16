@@ -67,7 +67,13 @@ Following steps explain how to create datasets for training using code in this r
   * Data\test
 * Augmentation: Execute script augmentation_main.py to create artificial datasets by using 25 augmentation techniques on original images. All these datasets will be created in directory \Data\Augmented.
   *  This directory will contain 2 directories for each augmentation technique; one for training and other for testing.
-  *  This directory will contain two additional directories that will keep combined dataset (i.e. dataset with original images and all 25 augmented ones combined)
+  *  This directory will contain two additional directories that will keep combined dataset (i.e. dataset with all 25 augmented ones combined)
+ *  Manual steps: Following steps have to be done manually. These are not covered by scripts.
+  *  Copy images from origianl train and test datasets (from Data/train and Data/test folders respectively) to following folders
+   *  Copy folder Data\train to Data\Augmented
+   *  Copy images in Data/train to Data\Augmented\train_combined
+   *  Copy folder Data\test to Data\Augmented
+   *  Copy images in Data/test to Data\Augmented\test_combined
 
 ## Directory Sturcture
 
