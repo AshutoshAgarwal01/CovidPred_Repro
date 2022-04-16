@@ -48,6 +48,14 @@ After this, we created 25 new datasets by applying different augmentation techni
 We used [CloDSA](https://github.com/joheras/CLoDSA) library for image augmentation.
 We further created one more dataset by combining original dataset and all augmented datasets. Thus we had total 27 datasets.
 
+## Prerequisites
+Image augmentation library CloDSA must be installed on the machine before proceeding further. 
+
+### Steps to install CloDSA
+This library needs a number of packages to be pre-installed before installing clodsa.
+* Execute script \Scripts\CheckPkgs.py to check if all pre-requisites to install CloDSA are met. This script will list packages that are needed for CloDSA but are missing on machine. Install all missing packages.
+* Install CloDSA following instructions mentioned here https://github.com/joheras/CLoDSA
+
 ## How to recreate data
 Following steps explain how to create datasets for training using code in this repository.
 
@@ -74,6 +82,11 @@ Following steps explain how to create datasets for training using code in this r
    *  Copy images in Data/train to Data\Augmented\train_combined
    *  Copy folder Data\test to Data\Augmented
    *  Copy images in Data/test to Data\Augmented\test_combined
+
+## How to train models
+Following steps explain how to train models using scripts present in the repository. Model training scripts are present in directory '\Scripts\ModelTraining'
+
+* 
 
 ## Directory Sturcture
 
