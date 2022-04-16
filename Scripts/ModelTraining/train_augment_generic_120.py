@@ -173,7 +173,7 @@ def train(total_iterations, filename, session, saver, data, batch_size, optimize
             # Save model every 3rd epoch or on last epoch.
             if (epoch == 1 or epoch % 3 == 0 or epoch == total_epochs):
                 print_and_log ("Saving model...")
-                saver.save(session, f'c:/temp/Model_{filename}/trained_model') ### To save model with the name specified in this line
+                saver.save(session, f'Model_{filename}/trained_model') ### To save model with the name specified in this line
     
     return acc_arr, val_acc_arr, val_loss_arr, epoch_arr
 
@@ -198,7 +198,7 @@ def createPlot(datasetname, title, epoch_array, acc_array, val_acc_array, val_lo
     plt.legend(loc = 'upper right')
 
     ## Figure save location and figure name
-    plt.savefig(f"c:/temp/Model_{datasetname}/{filename}.png")
+    plt.savefig(f"Model_{datasetname}/{filename}.png")
 
 ##################################################################################
 # function to print duration
