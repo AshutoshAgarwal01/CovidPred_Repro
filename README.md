@@ -86,50 +86,24 @@ Following steps explain how to create datasets for training using code in this r
 ## How to train models
 Following steps explain how to train models using scripts present in the repository. Model training scripts are present in directory '\Scripts\ModelTraining'
 
-* train_generic_original.py
-* train_augment_generic_120.py
-* train_augment_generic_140.py
-* train_augment_generic.py
+* train_generic_original.py: This script trains model by using original dataset.
+* train_augment_generic_120.py: This script trains model by using images rotated by 120 degrees.
+* train_augment_generic_140.py: This script trains model by using images rotated by 140 degrees.
+* train_augment_generic.py: This script trains model by using combined dataset (original images + all 25 augmented datasets combined).
 
 ### Output of model training
+Following output files are created.
 
-* Logfiles
-* Trained model files
+* Logfiles: File is created in the same folder where scripts are present. Name and path of the logfile can be customized in the script.
+* Trained model files: Trained model and it's associated files are stored in 'Model_{filename}' directory. Here filename = name of dataset. Please find more information about it from script.
 
 ## How to validate models
+After model training, we want to validate the models on unseen (test) datasets. Execute script 'validate_augment_generic.py' to validate the models.
+
+Please modify variables in the script to modify target model, target dataset and logfile path.
 
 ### Output of validation
 
-* Logfiles
-* ValidationResult.csv
+* Logfiles: Created in the same folder from where script is executed.
+* ValidationResult.csv: Contains validation result (accuracy for each label). This file is stored in same folder where model was stored.
 
-## Directory Sturcture
-
-### Data
-Data directory contains data used for this work. In git repo, this directory contains only few samples.
-
-#### FullSet
-This directory contains sample data of from all data sources used in this work. A very small subset of images are included in these folders so that someone else can test the scripts and work on full data set confidently.
-
-On local machine, where full code is executed, please download entire data from given sources in this directory.
-
-#### FinalSet
-This directory will contain selected images from images in FullSet directory. Images are selected based on various criterions. Those criterions can be found in Python scripts located in 'Script' directory.
-
-#### Augmented
-This directory will contain augmented imaged. This directory is populated by executing script augmentation_main.py.
-
-#### Summary
-This directory contains csv files that describe source and statistics of data.
-
-### Scripts
-This directory contains all scripts used in this work.
-
-#### DataManipulation
-This directory contains scripts that perform data manipulation tasks.
-1. github_select_images_for_reproduction.py - selects relevant images from github data source.
-2. Kaggle_select_images_for_reproduction.py - selects relevant images from Kaggle data source.
-3. Montgomery_select_images_for_reproduction.py - selects relevant images from Montgomery data source.
-4. augmentation_main.py - This script performs image augmentation.
-
-Note: After downloading full data in FullSet folder. Data manipulation scripts should be executed in same order listed above.
