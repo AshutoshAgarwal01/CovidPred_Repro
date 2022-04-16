@@ -1,9 +1,50 @@
-# CovidPred_Repro
 This repository contains code to reproduce results obtained by a research paper which classifies COIVD based on X-Ray images.
 
-Link to original research paper: https://www.hindawi.com/journals/ijbi/2020/8889023/
+# Original research paper
+This work is done to build efficient deep learning models using the convolutional neural network (CNN) using a very limited set of chest X-ray images to differentiate COVID-19 cases from healthy cases and other types of illnesses. The overall goal of the paper is to train models such that rapid screening of COVID-19 patients is possible in a non-invasive and automated fashion.
 
+In this study, authors have applied following techniques to overcome issues mentioned above:
+* To overcome scarcity of x-ray images, authors proposed creating a much larger artificial dataset using smaller original dataset. This artificial dataset was created by applying multiple image augmentation techniques on the original data.
+* Careful image selection: Authors propose to use similar type of images (same view, same age group) to train a very targeted model. This study claims that models built with similar type of images perform better than those models that take a wide variety of images
+
+Overall, authors showed that artificially generated x-ray images using image augmentation techniques greatly improved model performance when compared with original smaller set of images.
+
+Link to original research paper: https://www.hindawi.com/journals/ijbi/2020/8889023/
 Link to GitHub repository of original research paper: https://github.com/arunsharma8osdd/covidpred
+
+# Reproduction work (this repository)
+This work reproduces the work done in original paper to verify if model trained with augmented images (artificial dataset) outperforms model trained with only original set of images.
+
+For this work, we created 26 other artificial datasets based on origianl set of images. Further, from these dataset we trained following models:
+* Model trained with original images only.
+* Model trained with images rotated by 120 degrees.
+* Model trained with images rotated by 140 degrees.
+* Model trained with original images and augmented images combined.
+
+# Data acquisition and processing
+Data from following three sources is used in this paper.
+* [github (Cohen’s covid-chestxray-dataset)](https://github.com/ieee8023/covid-chestxray-dataset): This dataset is used to get 'covid 19' and 'non covid 19' images
+* [Kaggle NIH dataset](https://www.kaggle.com/datasets/nih-chest-xrays/data): This dataset is used to get Pneumonia images.
+* [National Library of medicine](https://lhncbc.nlm.nih.gov/LHC-publications/pubs/TuberculosisChestXrayImageDataSets.html): This dataset is used to get normal and TB images.
+
+Following diagram depicts all steps we performed to gather and process data for model training and validation purposes.
+Note: Number in each box represents number of images.
+
+We filtered images from these datasets using same filtering criteria cited by authors in their paper.
+Following is the general filtering criteria.
+* Age of patient must be 19 years or older.
+* Only chest X-ray images.
+* X-ray image view must be PA.
+
+After filtering the data, we divided the dataset into two parts using random sampling. We reserved 10 percent of the data for external validation (test set) and remaining 90 percent for model training (training set).
+After this, we created 25 new datasets by applying different augmentation techniques on original set of training and test images. Some of the augmentation techniques used are:
+* Rotate images by 45, 60, 90, 120, 140 and 160 degrees
+* Raise blue, green, red and hue
+* Crop images
+* Flip images horizontally, vertically and in both directions.
+* Introduce blur to the images.
+We used [CloDSA](https://github.com/joheras/CLoDSA) library for image augmentation.
+We further created one more dataset by combining original dataset and all augmented datasets. Thus we had total 27 datasets.
 
 ## Directory Sturcture
 
