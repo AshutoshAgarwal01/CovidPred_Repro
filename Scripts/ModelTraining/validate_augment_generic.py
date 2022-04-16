@@ -90,7 +90,7 @@ for dataset_name in datasets:
     testfolder = rf'../../Data/Augmented/test_{dataset_name[6:]}/'
 
     # Saved model directory path
-    model_p = f'c:/temp/Model_{dataset_name}'
+    model_p = f'Model_{dataset_name}'
     model_p2 = model_p+'/trained_model.meta'
 
     # Result file path
