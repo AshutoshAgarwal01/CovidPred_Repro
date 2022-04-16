@@ -28,6 +28,8 @@ Data from following three sources is used in this paper.
 * [National Library of medicine](https://lhncbc.nlm.nih.gov/LHC-publications/pubs/TuberculosisChestXrayImageDataSets.html): This dataset is used to get normal and TB images.
 
 Following diagram depicts all steps we performed to gather and process data for model training and validation purposes.
+![Data_Processing](https://user-images.githubusercontent.com/17690014/163689385-e15138a6-13ea-4c4a-ab1f-4f53c5a8f060.png)
+
 Note: Number in each box represents number of images.
 
 We filtered images from these datasets using same filtering criteria cited by authors in their paper.
@@ -45,6 +47,27 @@ After this, we created 25 new datasets by applying different augmentation techni
 * Introduce blur to the images.
 We used [CloDSA](https://github.com/joheras/CLoDSA) library for image augmentation.
 We further created one more dataset by combining original dataset and all augmented datasets. Thus we had total 27 datasets.
+
+## How to recreate data
+Following steps explain how to create datasets for training using code in this repository.
+
+* Create directory struture same as present in this repository.
+* Download data available from aforementioned sources to 'Data\FullSet' directory. Name the folders as below:
+  * ieee8023_covid-chestxray-dataset - keep Cohen's data here.
+  * Kaggle Dataset - Keep data downloaded from Kaggle here.
+  * MontgomerySet - Keep data downloaded from last source here.
+* Filtering data: Execute following scripts (present in 'Scripts\DataManipulation' directory) in given order to create datasets.
+  * github_select_images_for_reproduction.py - filters data from github source and copies filtered images to directories \Data\FinalSet\covid_19 and \Data\FinalSet\non_covid_19
+  * Kaggle_select_images_for_reproduction.py - filters data from Kaggle source and copies filterd images to following directory.
+    * \Data\FinalSet\Pneumonia
+  * Montgomery_select_images_for_reproduction.py - filters data from last source and copies filtered images to following directories.
+    * \Data\FinalSet\Normal and \Data\FinalSet\TB
+* Train-test split: Execute script train_test_split.py. This script will split filtered data for each category into train (90%) and test (10%) set. Following two directoris will be created.
+  * Data\train
+  * Data\test
+* Augmentation: Execute script augmentation_main.py to create artificial datasets by using 25 augmentation techniques on original images. All these datasets will be created in directory \Data\Augmented.
+  *  This directory will contain 2 directories for each augmentation technique; one for training and other for testing.
+  *  This directory will contain two additional directories that will keep combined dataset (i.e. dataset with original images and all 25 augmented ones combined)
 
 ## Directory Sturcture
 
