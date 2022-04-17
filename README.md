@@ -1,4 +1,4 @@
-This repository contains code to reproduce results obtained by a research paper which classifies COIVD based on X-Ray images.
+This repository contains code and artifacts to reproduce results obtained by a research paper which classifies COIVD based on X-Ray images.
 
 # Original research paper
 This work is done to build efficient deep learning models using the convolutional neural network (CNN) using a very limited set of chest X-ray images to differentiate COVID-19 cases from healthy cases and other types of illnesses. The overall goal of the paper is to train models such that rapid screening of COVID-19 patients is possible in a non-invasive and automated fashion.
