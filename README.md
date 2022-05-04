@@ -59,7 +59,7 @@ This library needs a number of packages to be pre-installed before installing cl
 ## How to recreate data
 Following steps explain how to create datasets for training using code in this repository.
 
-* Create directory struture same as present in this repository.
+* Create directory structure same as present in this repository.
 * Download data available from aforementioned sources to 'Data\FullSet' directory. Name the folders as below:
   * ieee8023_covid-chestxray-dataset - keep Cohen's data here.
   * Kaggle Dataset - Keep data downloaded from Kaggle here.
