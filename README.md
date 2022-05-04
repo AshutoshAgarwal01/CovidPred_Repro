@@ -24,7 +24,7 @@ For this work, we created 26 other artificial datasets based on origianl set of 
 # Data acquisition and processing
 Data from following three sources is used in this paper.
 * [github (Cohen’s covid-chestxray-dataset)](https://github.com/ieee8023/covid-chestxray-dataset): This dataset is used to get 'covid 19' and 'non covid 19' images
-* [Kaggle NIH dataset](https://www.kaggle.com/datasets/nih-chest-xrays/data): This dataset is used to get Pneumonia images.
+* [Kaggle NIH dataset](https://www.kaggle.com/nih-chest-xrays/data): This dataset is used to get Pneumonia images.
 * [National Library of medicine](https://lhncbc.nlm.nih.gov/LHC-publications/pubs/TuberculosisChestXrayImageDataSets.html): This dataset is used to get normal and TB images.
 
 Following diagram depicts all steps we performed to gather and process data for model training and validation purposes.
