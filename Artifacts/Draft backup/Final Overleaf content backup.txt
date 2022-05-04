@@ -27,6 +27,12 @@
 
 \usepackage[belowskip=-10pt,aboveskip=0pt]{caption}
 
+\usepackage{xparse}
+\NewDocumentCommand{\DIV}{om}{%
+  \IfValueT{#1}{\setcounter{#2}{\numexpr#1-1\relax}}%
+  \csname #2\endcsname
+}
+
 % This is not strictly necessary, and may be commented out,
 % but it will improve the layout of the manuscript,
 % and will typically save some space.
@@ -124,7 +130,7 @@ We did this work in three phases, namely i) image pre-processing, (ii) data augm
 \subsection{Model descriptions}
 The author used a simple CNN approach by testing a number of different architectures with different number of layers, number of neurons per layers, normalizations, pooling techniques and hyperparameters and adapting the model after each additional improvement of validation accuracy. The CNN model identified uses 3 convolutional layers followed by two fully connected linear layers. 
 
-\textit{Figure \ref{fig:model-arch}} - manifests the CNN model architecture developed for this paper. Rectified Linear Unit (ReLU) addressed the non- linearity after each convolutional layer.
+\textbf{Figure \ref{fig:model-arch}} - manifests the CNN model architecture developed for this paper. Rectified Linear Unit (ReLU) addressed the non- linearity after each convolutional layer.
 
 %% , and dropout between the connected linear layers were used to standardize the inputs to a neural network and stabilize the validation loss along the epochs, reducing the variance of validation accuracy. 
 
@@ -142,7 +148,7 @@ Data from following three sources is used in this paper.
     \item National Library of medicine [3]: This dataset is used to get normal and TB images. 
 \end{itemize}
 
-\textit{Figure \ref{fig:data-processing}} depicts all steps we performed to gather and process data for model training and validation purposes.
+\textbf{Figure \ref{fig:data-processing}} depicts all steps we performed to gather and process data for model training and validation purposes.
 \begin{figure}
 \includegraphics[scale=0.45]{acl-ijcnlp2021-templates/Artifacts/Data_Processing.png}
 \caption{Number in each box is count of images.}
@@ -174,9 +180,8 @@ We further created one more dataset by combining original dataset and all augmen
 
 \subsection{Hyperparameters}
 
-For initial reproduction work, we used same hyperparameters used in the paper except number of iterations. Table in \textit{Figure \ref{fig:hyperparameters}} describes the hyperparameters and their values across different datasets.
+For initial reproduction work, we used same hyperparameters used in the paper except number of iterations. Table in \textbf{Figure \ref{fig:hyperparameters}} describes the hyperparameters and their values across different datasets. We used AdamOptimizer with learning rate of 1e-4.
 
-Green boxes represent hyperparameters that were modified for our study.
 \begin{figure}
 \includegraphics[scale=0.61]{acl-ijcnlp2021-templates/Artifacts/Hyperparameters.png}
 \caption{Hyperparameters}
@@ -195,7 +200,7 @@ Code of reproduction work can be found in Git repository CovidPred\_Repo [6]
 %% \url{https://github.com/AshutoshAgarwal01/CovidPred_Repro}
 
 \subsection{Computational requirements}
-In the proposal we mentioned that we will use GPU if training model with large dataset (all augmented images combined) takes very long time. However in our initial runs, even the largest dataset completed in reasonable amount of time. Therefore we decided to use the alternate in-premise CPU based hardware. Tables (\textit{figure \ref{fig:configuration}} and \textit{figure \ref{fig:resource-utilization}}) show configuration of desktop that we used and total resources consumed during work.
+In the proposal we mentioned that we will use GPU if training model with large dataset (all augmented images combined) takes very long time. However in our initial runs, even the largest dataset completed in reasonable amount of time. Therefore we decided to use the alternate in-premise CPU based hardware. Tables (\textbf{Figure \ref{fig:configuration}} and \textbf{Figure \ref{fig:resource-utilization}}) show configuration of desktop that we used and total resources consumed during work.
 \begin{figure}
 \includegraphics[scale=0.9]{acl-ijcnlp2021-templates/Artifacts/DesktopConfig.png}
 \caption{Configuration of hardware}
@@ -207,7 +212,7 @@ In the proposal we mentioned that we will use GPU if training model with large d
 \label{fig:resource-utilization}
 \end{figure}
 
-Table in \textit{Figure \ref{fig:cputime}} summarizes total CPU time and average CPU time per epoch for each model.
+Table in \textbf{Figure \ref{fig:cputime}} summarizes total CPU time and average CPU time per epoch for each model.
 \begin{figure}
 \includegraphics[scale=0.5]{acl-ijcnlp2021-templates/Artifacts/Training_Time.png}
 \caption{CPU time spent for training}
@@ -223,14 +228,22 @@ Our reproduction study did not result in exact same accuracy numbers as the orig
 
 % The number of subsections for results should be the same as the number of hypotheses you are trying to verify.
 
-\subsection{Result 1}
+\subsection{Result 1: (Results/ Analyses/ Plans)}
+
+%\subsubsection{Result 1}
+
+
 The paper claimed that model trained with original and augmented images combined results in higher accuracy (true positive) across all classification labels when compared with model trained with original images only.
 
-Table in \textit{figure \ref{fig:orig-comb-perf}} summarizes true positive rate (proportions of images correctly classified by the model for given label) of both models on unseen original data.
+%Table in \textit{figure \ref{fig:orig-comb-perf}} summarizes true positive rate (proportions of images correctly classified by the model for given label) of both models on unseen original data.
 
-We can see that model trained with combined dataset outperforms model trained with original images by over 20\%. This upholds the paper's conclusion that overall it performs better than the baseline. 
+Table in \textbf{Figure \ref{fig:orig-comb-perf}} summarizes true positive rate (proportions of images correctly classified by the model for given label) of both models on unseen original data.
+We can see that model trained with combined dataset outperforms model trained with original images by over 20\% on average. This upholds the paper's conclusion that overall it performs better than the baseline. 
 
-However when we look the individual label result, we observed that accuracy for non-covid degrades in combined model. As per our analysis, we feel it happened due to a smaller test dataset size of 3 images. We plan to introduce more non-covid19 images to our model in subsequent study to confirm our analysis.
+We observed that the combined model performs 100\% better on Normal, over 42\% better on Covid-19, over 8\% better on Pneumonia and 25\% better on TB illnesses. However, accuracy for non-covid degrades in combined model. As per our analysis, we feel it happened due to a smaller test dataset size of 3 images. 
+
+We plan to introduce more non-covid19 images to our model in final study to confirm our analysis. In addtion, we also plan simulate the study multiple times to further analyze the outcome for a more accurate comparison.
+
 
 \begin{figure}
 \includegraphics[scale=0.67]{acl-ijcnlp2021-templates/Artifacts/Perf_comp_with_combined.png}
@@ -238,14 +251,14 @@ However when we look the individual label result, we observed that accuracy for 
 \label{fig:orig-comb-perf}
 \end{figure}
 
-\subsection{Result 2}
+\subsection{Result 2: (Results/ Analyses/ Plans)}
 Authors showed that performance of models trained with 120 and 140 degree rotated images were complimentary to each other. Together, these two models beat performance of model trained with original images. 
 
-Table in \textit{figure \ref{fig:orig-aug-perf}} summarizes true positive rate (proportions of images correctly classified by the model for given label) for all three models on unseen original data.
+Table in \textbf{Figure \ref{fig:orig-aug-perf}} summarizes true positive rate (proportions of images correctly classified by the model for given label) for all three models on unseen original data.
 
-We can see that for all labels except Tuberculosis authors' conclusion holds good. However, both augmented models perform worse than baseline for Tuberculosis. Therefore, this claim is only partially supported by our reproduction study.
+We observed that the two models perform with 100\% accuracy on Normal images. Model with 120 degree performs better in detecting Covid-19 while Model with 140 degree performs better on other illnesses. However, both augmented models perform worse than baseline for TB. Overall, the result trend with exception to TB is in line with the original study. Therefore, this claim is only partially supported by our reproduction study. 
 
-We found that the difference is due to random sampling of TB images when compared with original study. We plan to further analyze and test the model with additional random sampling and compare the average result to study the trend.
+We found that the difference is due to random sampling of TB images when compared with original study. We plan to further analyze and test the model with additional random sampling and compare the average result to study the trend. We also plan to simulate the study with new data sets for comparison.
 
 %% As per our analysis we found that the difference is because of random sampling of TB images when compared with original study. We plan to further analyze and test the model with additional random sampling and compare the average result to study the trend.
 
@@ -259,13 +272,31 @@ We found that the difference is due to random sampling of TB images when compare
 
 \section{Discussion: TODO}
 
-\subsection{What was easy: TODO}
+\subsection{What was easy}
 
-\subsection{What was difficult: TODO}
+Authors provided extensive documentation of data in the paper and the supplemental documents. This documentation included source of data, how they processed it and what was the outcome of processing (e.g., number of images after each processing step). 
+
+The sources of data were easily accessible, as a result we did not have any issues with raw data acquisition. 
+
+By following the documentation and result of data processing provided by authors, we were able to write our own scripts to generate final data needed for model training and validation. 
+
+\subsection{What was difficult}
+
+There were two items which we consider difficult in our reproduction study. 
+
+Authors did not provide any detail about the model architecture in the paper or in their supplementary material. We had to reverse engineer the code provided by them to understand the model architecture, its parameters and intermediate results. 
+
+The code was broken, we had to fix it before we could get started. 
+
+Authors used tensorflow v1, which is outdated now. We had to spend extra time to understand their code. Moreover it was extremely difficult to modify this code because it was not modular in nature. 
+
+Original authors used tool CloDSA in the original work to augment images. Authors did not clearly mention how they did it. We had to learn this tool from scratch and implement our own scripts to perform augmentation activity.
 
 \subsection{Recommendations for reproducibility: TODO}
 
 \section{Communication with original authors: TODO}
+
+We did not have any specific questions to ask about the paper itself. However, we sent our project draft to the author (Dinesh Gupta) and requested him to review the same. We have not heard back from him so far.
 
 \clearpage
 
