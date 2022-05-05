@@ -94,7 +94,7 @@ Overall, authors showed that artificially generated x-ray images using image aug
 
     \textit{"This study shows that a deep learning model trained with larger volume of artificially generated X-ray images using image augmentation techniques will have higher accuracy (TPR) than the model trained with small set of original images."}
     
-\textit{Note: In this document we will abbreviate true positive rate as TPR}
+\textit{Note: In this document we will abbreviate true positive rate a.k.a. Recall as TPR}
 
 Data scarcity is a well-known problem in the field of healthcare analytics, especially when research is aimed at fairly new area e.g., classification of COVID-19 patients when the pandemic just broke out. We are motivated to take on this study as it tries to solve a real life problem which exists across all  healthcare domain. It will not only help improve model performance, but also reduce cost and time involved in getting sufficient size data for any healthcare study.  
 
@@ -284,11 +284,11 @@ In \textbf{Figure \ref{fig:f1-score}} recall for label non-covid19 using origina
 \label{fig:f1-score}
 \end{figure}
 
-We can see that recall has significantly improved in combined model for all labels except non-covid which makes us feel that paper's approach of augmentation did not fully satisfy the expected results. However, F1-score has improved across all labels. This tells us that the combined model is actually better than original model.
+We can see that recall has significantly improved in combined model for all labels except non-covid which makes us feel that paper's approach of augmentation did not fully satisfy the expected results. However, F1-score has improved across all labels. This refutes the conclusion made by just observing recall and tells us that the combined model is actually better than original model.
 
 By means of this ablation we can conclude that author's first claim is true and reproducible.
 
-Original paper does not provide confusion matrix therefore, we cannot compare our f1-score against original work.
+Original paper does not provide confusion matrix therefore, we cannot compare our f1-score against same metric obtained in original work.
 
 \section{Discussion}
 The claims cited in the original paper were largely reproducible in our work with couple of exceptions.  
@@ -299,7 +299,7 @@ Another claim that original paper made was that models trained with 120 degree r
 
 We feel that very small dataset size for non-covid and TB classes led to these issues. There were only 3 and 5 images in validation set for non-covid and TB classes respectively. The small dataset for model validation caused too much variation in the results. As a result, we observed significant difference in accuracy (TPR) for these classes between original paper and our reproduction study.  
 
-We feel that if we (and original paper) had larger dataset available for validation then this variation would have been smaller and we would have seen better accuracy (TPR) for predicting non-covid and TB classes respectively. 
+We feel that if we and original paper had larger dataset available for validation then this variation would have been smaller and we would have seen better accuracy (TPR) for predicting non-covid and TB classes respectively. 
 
 \textbf{What was reproducible: } Overall although our accuracy (TPR) results are not exactly the same as those mentioned in the paper, however the trend was same. This slight variation in the accuracy (TPR) results were observed because of following reasons: 
 
@@ -311,7 +311,7 @@ We performed random sampling of images for test-train split. This resulted in di
 
 \textbf{Ablation: } Evaluating models with f1-score provided us more insights into model performance. We found that unlike recall, f1-score consistently improved across all labels in the combined model. Therefore it further strengthened claim cited in paper.
 
-\textbf{Strength and weakness: }We feel that strength of our work was to very closely mimic dataset used by the original authors in spite of code unavailability. The model training and validation code provided by authors cannot execute multiple models in parallel. This is because of stateful nature of code due to tensorflow v1. We could not fix it during our work due to time constraints. As a result our model training and validation time was slower than we expected. We consider it as one of the weaknesses in our approach. 
+\textbf{Strength and weakness: }We feel that strength of our work was that we were able to very closely mimic dataset used by the original authors in spite of code unavailability. The model training and validation code provided by authors cannot execute multiple models in parallel. This is because of stateful nature of code due to tensorflow v1. We could not fix it during our work due to time constraints. As a result our model training and validation time was slower than we expected. We consider it as one of the weaknesses in our approach. 
 
 \subsection{What was easy}
 
@@ -325,7 +325,7 @@ By following the documentation and result of data processing provided by authors
 
 There were two items which we consider difficult in our reproduction study. 
 
-Authors did not provide any detail about the model architecture in the paper or in their supplementary material. We had to reverse engineer the code provided by them to understand the model architecture, its parameters and intermediate results. 
+Authors provided very little detail about the model architecture in the paper. We had to reverse engineer the code provided by them to understand the model architecture, its parameters and intermediate results. 
 
 The code was broken, we had to fix it before we could get started. 
 
@@ -346,7 +346,7 @@ Authors of this paper made a great effort to make their work reproducible. We wo
 
 \section{Communication with original authors}
 
-Although we have utilized resources provided by authors meticulously to execute this reproduction study as close to original work as possible. However we feel that we may have taken some assumptions along the way. To ensure that our report is a fair assessment of what authors intended to do, we sent our project draft to the authors and requested them to review it. We are hoping to hear back from them soon.
+Although we have utilized resources provided by authors meticulously to execute this reproduction study as close to the original work as possible. However we feel that we may have taken some assumptions along the way. To ensure that our report is a fair assessment of what authors intended to do, we sent our project draft to the authors and requested them to review it. We are hoping to hear back from them soon.
 
 \clearpage
 
