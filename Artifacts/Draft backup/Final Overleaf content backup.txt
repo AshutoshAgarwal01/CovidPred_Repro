@@ -92,7 +92,9 @@ Overall, authors showed that artificially generated x-ray images using image aug
 
 \section{Scope of reproducibility}
 
-    \textit{"This study shows that a deep learning model trained with larger volume of artificially generated X-ray images using image augmentation techniques will have higher accuracy than the model trained with small set of original images."}
+    \textit{"This study shows that a deep learning model trained with larger volume of artificially generated X-ray images using image augmentation techniques will have higher accuracy (TPR) than the model trained with small set of original images."}
+    
+\textit{Note: In this document we will abbreviate true positive rate as TPR}
 
 Data scarcity is a well-known problem in the field of healthcare analytics, especially when research is aimed at fairly new area e.g., classification of COVID-19 patients when the pandemic just broke out. We are motivated to take on this study as it tries to solve a real life problem which exists across all  healthcare domain. It will not only help improve model performance, but also reduce cost and time involved in getting sufficient size data for any healthcare study.  
 
@@ -100,7 +102,7 @@ Data scarcity is a well-known problem in the field of healthcare analytics, espe
 
 We will be testing following two claims from the paper.
 \begin{itemize}
-    \item \textbf{Claim 1}: Model trained with original and augmented images combined results in higher accuracy than model trained with only original images across all classification labels.
+    \item \textbf{Claim 1}: Model trained with original and augmented images combined results in higher accuracy (TPR) than model trained with only original images across all classification labels.
     
     Authors compared performance of following two models on unseen external data. 
 
@@ -109,7 +111,7 @@ We will be testing following two claims from the paper.
         \item Model with original images along with augmented images.
     \end{itemize}
     
-    Authors concluded that model trained with original and augmented images combined, results in higher accuracy (True positive rate) across classification labels.  In our project work, we want to confirm this claim.
+    Authors concluded that model trained with original and augmented images combined, results in higher accuracy (TPR) across classification labels.  In our project work, we want to confirm this claim.
     
     \item \textbf{Claim 2}: Authors showed that models trained with 120 and 140 degree rotated images were complimentary to each other. i.e., if one model performed bad for certain label than other model would perform better for the same label. Together, these two models beat performance of model trained with original images. We will verify this claim in our reproduction study.
 \end{itemize}
@@ -128,7 +130,7 @@ We did this work in three phases, namely i) image pre-processing, (ii) data augm
 %%We are planning to write new code for data processing and re-using (with moderate modifications) existing code for model training and testing. Following sections provide more details about this.
 
 \subsection{Model descriptions}
-The author used a simple CNN approach by testing a number of different architectures with different number of layers, number of neurons per layers, normalizations, pooling techniques and hyperparameters and adapting the model after each additional improvement of validation accuracy. The CNN model identified uses 3 convolutional layers followed by two fully connected linear layers. 
+The author used a simple CNN approach by testing a number of different architectures with different number of layers, number of neurons per layers, normalizations, pooling techniques and hyperparameters and adapting the model after each additional improvement of validation accuracy (TPR). The CNN model identified uses 3 convolutional layers followed by two fully connected linear layers. 
 
 \textbf{Figure \ref{fig:model-arch}} - manifests the CNN model architecture developed for this paper. Rectified Linear Unit (ReLU) addressed the non- linearity after each convolutional layer.
 
@@ -222,7 +224,7 @@ Table in \textbf{Figure \ref{fig:cputime}} summarizes total CPU time and average
 %% Total size of original, filtered, augmented and combined data together was \textbf{119 GB} on disk.
 
 \section{Results}
-Our reproduction study did not result in exact same accuracy numbers as the original study. However overall trend of the accuracy (true positive) per label is consistent with the original study.
+Our reproduction study did not result in exact same accuracy numbers as the original study. However overall trend of the accuracy (TPR) per label is consistent with the original study.
 
 %%The results obtained by our reproduction study support both the claims cited in section 2 of this paper. We will describe them in following sections.
 
@@ -233,21 +235,21 @@ Our reproduction study did not result in exact same accuracy numbers as the orig
 %\subsubsection{Result 1}
 
 
-The paper claimed that model trained with original and augmented images combined results in higher accuracy (true positive) across all classification labels when compared with model trained with original images only.
+The paper claimed that model trained with original and augmented images combined results in higher accuracy (TPR) across all classification labels when compared with model trained with original images only.
 
 %Table in \textit{figure \ref{fig:orig-comb-perf}} summarizes true positive rate (proportions of images correctly classified by the model for given label) of both models on unseen original data.
 
 Table in \textbf{Figure \ref{fig:orig-comb-perf}} summarizes true positive rate (proportions of images correctly classified by the model for given label) of both models on unseen original data.
 We can see that model trained with combined dataset outperforms model trained with original images by over 20\% on average. This upholds the paper's conclusion that overall it performs better than the baseline. 
 
-We observed that the combined model performs 100\% better on Normal, over 42\% better on Covid-19, over 8\% better on Pneumonia and 25\% better on TB illnesses. However, accuracy for non-covid degrades in combined model. As per our analysis, we feel it happened due to a smaller test dataset size of 3 images. 
+We observed that the combined model performs 100\% better on Normal, over 42\% better on Covid-19, over 8\% better on Pneumonia and 25\% better on TB illnesses. However, accuracy (TPR) for non-covid degrades in combined model. As per our analysis, we feel it happened due to a smaller test dataset size of 3 images. 
 
 We plan to introduce more non-covid19 images to our model in final study to confirm our analysis. In addtion, we also plan simulate the study multiple times to further analyze the outcome for a more accurate comparison.
 
 
 \begin{figure}
 \includegraphics[scale=0.67]{acl-ijcnlp2021-templates/Artifacts/Perf_comp_with_combined.png}
-\caption{Original vs combined performance}
+\caption{Original vs combined performance (true positive rate)}
 \label{fig:orig-comb-perf}
 \end{figure}
 
@@ -256,7 +258,7 @@ Authors showed that performance of models trained with 120 and 140 degree rotate
 
 Table in \textbf{Figure \ref{fig:orig-aug-perf}} summarizes true positive rate (proportions of images correctly classified by the model for given label) for all three models on unseen original data.
 
-We observed that the two models perform with 100\% accuracy on Normal images. Model with 120 degree performs better in detecting Covid-19 while Model with 140 degree performs better on other illnesses. However, both augmented models perform worse than baseline for TB. Overall, the result trend with exception to TB is in line with the original study. Therefore, this claim is only partially supported by our reproduction study. 
+We observed that the two models perform with 100\% accuracy (TPR) on Normal images. Model with 120 degree performs better in detecting Covid-19 while Model with 140 degree performs better on other illnesses. However, both augmented models perform worse than baseline for TB. Overall, the result trend with exception to TB is in line with the original study. Therefore, this claim is only partially supported by our reproduction study. 
 
 We found that the difference is due to random sampling of TB images when compared with original study. We plan to further analyze and test the model with additional random sampling and compare the average result to study the trend. We also plan to simulate the study with new data sets for comparison.
 
@@ -264,30 +266,50 @@ We found that the difference is due to random sampling of TB images when compare
 
 \begin{figure}
 \includegraphics[scale=0.7]{acl-ijcnlp2021-templates/Artifacts/Perf_comp_with_augmented.png}
-\caption{Original vs rotated comparison}
+\caption{Original vs rotated comparison (true positive rate)}
 \label{fig:orig-aug-perf}
 \end{figure}
 
-\subsection{Additional results not present in the original paper: TODO}
+\subsection{Additional results not present in the original paper}
 
-\section{Discussion: TODO}
+We noticed that original authors used recall (true positive rate) as the metric to evaluate the models. However, we feel that in case of classification study, using recall alone is not appropriate to judge a model. 
+
+Therefore, we decided to calculate accuracy, precision, recall and F1-score as well for these results. We tested model trained with original images and combined images against unseen original images. Table in \textbf{Figure \ref{fig:f1-score}} summarizes results of this comparison. We are showing only precision, recall and f1-score for conciseness.
+
+In \textbf{Figure \ref{fig:f1-score}} recall for label non-covid19 using original model is 0.67 which is good, but at the same time precision (0.29) is very low which is bad. Thus, looking at recall alone is not sufficient. Therefore, we should use another stable metric e.g., f1-score to evaluate a model in a better way.
+
+\begin{figure}
+\includegraphics[scale=0.7]{acl-ijcnlp2021-templates/Artifacts/f1_score.PNG}
+\caption{Original and combined validated against original unseen images}
+\label{fig:f1-score}
+\end{figure}
+
+We can see that recall has significantly improved in combined model for all labels except non-covid which makes us feel that paper's approach of augmentation did not fully satisfy the expected results. However, F1-score has improved across all labels. This tells us that the combined model is actually better than original model.
+
+By means of this ablation we can conclude that author's first claim is true and reproducible.
+
+Original paper does not provide confusion matrix therefore, we cannot compare our f1-score against original work.
+
+\section{Discussion}
 The claims cited in the original paper were largely reproducible in our work with couple of exceptions.  
 
 \textbf{What was not reproducible: } The original paper claimed that the model trained with original and augmented images combined performed better than model trained with original images only. In our study, we observed that this claim is generally true with exception to non-covid class.  
 
 Another claim that original paper made was that models trained with 120 degree rotated and 140 degree rotated images are complimentary to each other and combined, they perform better than model trained with original images. However we found that for TB class, both of these models together performed worse than the model with original images. 
 
-We feel that very small dataset size for non-covid and TB classes led to these issues. There were only 3 and 5 images in validation set for non-covid and TB classes respectively. The small dataset for model validation caused too much variation in the results. As a result, we observed significant difference in accuracy for these classes between original paper and our reproduction study.  
+We feel that very small dataset size for non-covid and TB classes led to these issues. There were only 3 and 5 images in validation set for non-covid and TB classes respectively. The small dataset for model validation caused too much variation in the results. As a result, we observed significant difference in accuracy (TPR) for these classes between original paper and our reproduction study.  
 
-We feel that if we (and original paper) had larger dataset available for validation then this variation would have been smaller and we would have seen better accuracy for predicting non-covid and TB classes respectively. 
+We feel that if we (and original paper) had larger dataset available for validation then this variation would have been smaller and we would have seen better accuracy (TPR) for predicting non-covid and TB classes respectively. 
 
-\textbf{What was reproducible: } Overall although our accuracy results are not exactly the same as those mentioned in the paper, however the trend was same. This slight variation in the accuracy results were observed because of following reasons: 
+\textbf{What was reproducible: } Overall although our accuracy (TPR) results are not exactly the same as those mentioned in the paper, however the trend was same. This slight variation in the accuracy (TPR) results were observed because of following reasons: 
 
 We had slightly more data available than what original authors had. 
 
-The authors found 70+ COVID related images after they completed their initial study, they had opportunity to revalidate their model using these new images. However, they did not mention how to find these images. As a result, we had to train our model with full dataset (including these 70+ images) and accuracy of covid-19 class turned out to be better in the reproduction study than in original work. 
+The authors found 70+ COVID related images after they completed their initial study, they had opportunity to revalidate their model using these new images. However, they did not mention how to find these images. As a result, we had to train our model with full dataset (including these 70+ images) and accuracy (TPR) of covid-19 class turned out to be better in the reproduction study than in original work. 
 
 We performed random sampling of images for test-train split. This resulted in different train and test set between original work and reproduction work. 
+
+\textbf{Ablation: } Evaluating models with f1-score provided us more insights into model performance. We found that unlike recall, f1-score consistently improved across all labels in the combined model. Therefore it further strengthened claim cited in paper.
 
 \textbf{Strength and weakness: }We feel that strength of our work was to very closely mimic dataset used by the original authors in spite of code unavailability. The model training and validation code provided by authors cannot execute multiple models in parallel. This is because of stateful nature of code due to tensorflow v1. We could not fix it during our work due to time constraints. As a result our model training and validation time was slower than we expected. We consider it as one of the weaknesses in our approach. 
 
@@ -339,6 +361,7 @@ Although we have utilized resources provided by authors meticulously to execute 
     \item CloDSA: \url{https://github.com/joheras/CLoDSA}
     \item Reproduction work: \url{https://github.com/AshutoshAgarwal01/CovidPred_Repro}
     \item Original Paper: \url{https://www.hindawi.com/journals/ijbi/2020/8889023/}
+    \item Accuracy, precision, recall: \url{https://towardsdatascience.com/confusion-matrix-for-your-multi-class-machine-learning-model-ff9aa3bf7826}
 \end{enumerate}
 
 %\appendix
