@@ -271,6 +271,25 @@ We found that the difference is due to random sampling of TB images when compare
 \subsection{Additional results not present in the original paper: TODO}
 
 \section{Discussion: TODO}
+The claims cited in the original paper were largely reproducible in our work with couple of exceptions.  
+
+\textbf{What was not reproducible: } The original paper claimed that the model trained with original and augmented images combined performed better than model trained with original images only. In our study, we observed that this claim is generally true with exception to non-covid class.  
+
+Another claim that original paper made was that models trained with 120 degree rotated and 140 degree rotated images are complimentary to each other and combined, they perform better than model trained with original images. However we found that for TB class, both of these models together performed worse than the model with original images. 
+
+We feel that very small dataset size for non-covid and TB classes led to these issues. There were only 3 and 5 images in validation set for non-covid and TB classes respectively. The small dataset for model validation caused too much variation in the results. As a result, we observed significant difference in accuracy for these classes between original paper and our reproduction study.  
+
+We feel that if we (and original paper) had larger dataset available for validation then this variation would have been smaller and we would have seen better accuracy for predicting non-covid and TB classes respectively. 
+
+\textbf{What was reproducible: } Overall although our accuracy results are not exactly the same as those mentioned in the paper, however the trend was same. This slight variation in the accuracy results were observed because of following reasons: 
+
+We had slightly more data available than what original authors had. 
+
+The authors found 70+ COVID related images after they completed their initial study, they had opportunity to revalidate their model using these new images. However, they did not mention how to find these images. As a result, we had to train our model with full dataset (including these 70+ images) and accuracy of covid-19 class turned out to be better in the reproduction study than in original work. 
+
+We performed random sampling of images for test-train split. This resulted in different train and test set between original work and reproduction work. 
+
+\textbf{Strength and weakness: }We feel that strength of our work was to very closely mimic dataset used by the original authors in spite of code unavailability. The model training and validation code provided by authors cannot execute multiple models in parallel. This is because of stateful nature of code due to tensorflow v1. We could not fix it during our work due to time constraints. As a result our model training and validation time was slower than we expected. We consider it as one of the weaknesses in our approach. 
 
 \subsection{What was easy}
 
@@ -292,11 +311,20 @@ Authors used tensorflow v1, which is outdated now. We had to spend extra time to
 
 Original authors used tool CloDSA in the original work to augment images. Authors did not clearly mention how they did it. We had to learn this tool from scratch and implement our own scripts to perform augmentation activity.
 
-\subsection{Recommendations for reproducibility: TODO}
+\subsection{Recommendations for reproducibility}
 
-\section{Communication with original authors: TODO}
+Authors of this paper made a great effort to make their work reproducible. We would like to give them full credit for this. Following are the most important items that helped us to effectively reproduce the paper. The same are our recommendations for future authors as well.
 
-We did not have any specific questions to ask about the paper itself. However, we sent our project draft to the author (Dinesh Gupta) and requested him to review the same. We have not heard back from him so far.
+\begin{itemize}
+    \item Clearly mention source of data and its accessibility.
+    \item Provide detailed steps about how data was pre-processed.
+    \item If possible, provide summary of raw data, final data and intermediate data.
+    \item If possible, provide source code. If not, then provide detailed model architecture and parameters.
+\end{itemize}
+
+\section{Communication with original authors}
+
+Although we have utilized resources provided by authors meticulously to execute this reproduction study as close to original work as possible. However we feel that we may have taken some assumptions along the way. To ensure that our report is a fair assessment of what authors intended to do, we sent our project draft to the authors and requested them to review it. We are hoping to hear back from them soon.
 
 \clearpage
 
