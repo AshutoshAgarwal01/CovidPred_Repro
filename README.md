@@ -24,6 +24,15 @@ For this work, we created 26 other artificial datasets based on origianl set of 
 * Model trained with images rotated by 140 degrees.
 * Model trained with original images and augmented images combined.
 
+# Dependencies
+
+Following are depencies for this work
+*    Python3
+*    pytorch
+*    Tensorflow v1
+*    CloDsa [[6]](#6) - More about this in Prerequisites section.
+*    Multi-core CPU for faster model training.
+
 # Data download instructions
 
 Data from following three sources is used in this paper.
@@ -61,7 +70,7 @@ After this, we created 25 new datasets by applying different augmentation techni
 * Crop images
 * Flip images horizontally, vertically and in both directions.
 * Introduce blur to the images.
-We used [CloDSA](https://github.com/joheras/CLoDSA) library for image augmentation.
+We used [CloDSA](https://github.com/joheras/CLoDSA) [[6]](#6) library for image augmentation.
 We further created one more dataset by combining original dataset and all augmented datasets. Thus we had total 27 datasets.
 
 ## Prerequisites
@@ -75,7 +84,7 @@ This library needs a number of packages to be pre-installed before installing cl
 python '\Scripts\CheckPkgs.py'
 ```
 
-* Install CloDSA by following [CLoDSA Instructions](https://github.com/joheras/CLoDSA)
+* Install CloDSA by following [CLoDSA Instructions](https://github.com/joheras/CLoDSA) [[6]](#6)
 
 ## How to filter, augment images and create train/ test sets.
 Following steps explain how to create datasets for training using code in this repository.
