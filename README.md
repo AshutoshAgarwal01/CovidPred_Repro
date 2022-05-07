@@ -155,7 +155,7 @@ Following output files are created.
 * **Logfiles**: File is created in the same folder where scripts are present. Name and path of the logfile can be customized in the script.
 * **Trained model files**: Trained model and it's associated files are stored in `'Model_{filename}'` directory. Here filename = name of dataset. Please find more information about it from script.
 
-## How to validate models
+## How to validate/ evaluate models
 After model training, we want to validate the models on unseen (test) datasets. Execute script `validate_augment_generic.py` to validate the models.
 
 Please modify variables in the script to modify target model, target dataset and logfile path.
@@ -169,3 +169,15 @@ python '\Scripts\ModelTraining\validate_augment_generic.py'
 * **Logfiles**: Created in the same folder from where script is executed.
 * **ValidationResult.csv**: Contains validation result (accuracy for each label). This file is stored in same folder where model was stored.
 
+## Pretrained models
+
+Since models trained by our work were large and could not be stored in the github repository, we stored them in separate storage.
+
+We trained following 4 models per this work.
+1. Model_train_original
+2. Model_train_rotated_120_degree
+3. Model_train_rotated_140_degree
+4. Model_train_combined_batch_32
+
+These pre-trained models are stored at following location.
+https://www.dropbox.com/sh/n4gnlj1sxf4z23r/AAA3tfh7BbwTgiEk0oYC2z0la?dl=0
