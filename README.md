@@ -182,4 +182,14 @@ We trained following 4 models per this work.
 These pre-trained models are stored at following location.
 https://www.dropbox.com/sh/n4gnlj1sxf4z23r/AAA3tfh7BbwTgiEk0oYC2z0la?dl=0
 
-## Results
+# Results
+
+Following table summarized results obtained by our reproduction study.
+
+This table shows performance of two models:
+* Model trained and tested with original images only
+* Model trained with combined images (original and augmented images together) and tested with original images only.
+
+Authors used recall as metric in their study. We can see that recall has significantly improved in combined model for all labels except non-covid which makes us feel that paper's approach of augmentation did not fully satisfy the expected results. However, F1-score has improved across all labels. This refutes the conclusion made by just observing recall and tells us that the combined model is actually better than original model.
+
+![Markdown_Results](https://user-images.githubusercontent.com/17690014/167269449-15efef09-f4ba-4c23-93ab-59d7ac810d4b.PNG)
