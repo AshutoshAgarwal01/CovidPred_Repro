@@ -115,12 +115,12 @@ python '\Scripts\DataManipulation\train_test_split.py'
 python '\Scripts\DataManipulation\augmentation_main.py'
 ```
 
- *  **Manual steps**: Following steps have to be done manually. These are not covered by scripts.
-  *  Copy images from origianl train and test datasets (from `Data/train` and `Data/test` folders respectively) to following folders
-   *  Copy folder `Data\train` to `Data\Augmented`
-   *  Copy images in `Data\train` to `Data\Augmented\train_combined`
-   *  Copy folder `Data\test` to `Data\Augmented`
-   *  Copy images in `Data\test` to `Data\Augmented\test_combined`
+*  **Manual steps**: Following steps have to be done manually. These are not covered by scripts.
+    *   Copy images from origianl train and test datasets (from `Data/train` and `Data/test` folders respectively) to following folders
+    *   Copy folder `Data\train` to `Data\Augmented`
+    *   Copy images in `Data\train` to `Data\Augmented\train_combined`
+    *   Copy folder `Data\test` to `Data\Augmented`
+    *   Copy images in `Data\test` to `Data\Augmented\test_combined`
 
 ## How to train models
 Following steps explain how to train models using scripts present in the repository. Model training scripts are present in directory '\Scripts\ModelTraining'
