@@ -77,7 +77,7 @@ python '\Scripts\CheckPkgs.py'
 
 * Install CloDSA by following [CLoDSA Instructions](https://github.com/joheras/CLoDSA)
 
-## How to filter and augment images.
+## How to filter, augment images and create train/ test sets.
 Following steps explain how to create datasets for training using code in this repository.
 
 * **Filtering data**: Execute following scripts (present in `Scripts\DataManipulation` directory) in given order to create datasets.
@@ -181,3 +181,5 @@ We trained following 4 models per this work.
 
 These pre-trained models are stored at following location.
 https://www.dropbox.com/sh/n4gnlj1sxf4z23r/AAA3tfh7BbwTgiEk0oYC2z0la?dl=0
+
+## Results
