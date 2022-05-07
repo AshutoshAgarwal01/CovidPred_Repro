@@ -9,14 +9,14 @@ In this study, authors have applied following techniques to overcome issues ment
 
 Overall, authors showed that artificially generated x-ray images using image augmentation techniques greatly improved model performance when compared with original smaller set of images.
 
-**Link to original research paper**: https://www.hindawi.com/journals/ijbi/2020/8889023/
+> **Link to original research paper**: https://www.hindawi.com/journals/ijbi/2020/8889023/
 
-**Link to GitHub repository of original research paper**: https://github.com/arunsharma8osdd/covidpred
+> **Link to GitHub repository of original research paper**: https://github.com/arunsharma8osdd/covidpred
 
 # Reproduction work (this repository)
 This work reproduces the work done in original paper to verify if model trained with augmented images (artificial dataset) outperforms model trained with only original set of images.
 
-**Video Presentation link**: https://mediaspace.illinois.edu/media/t/1_d2sh1778
+> **Video Presentation link**: https://mediaspace.illinois.edu/media/t/1_d2sh1778
 
 For this work, we created 26 other artificial datasets based on origianl set of images. Further, from these dataset we trained following models:
 * Model trained with original images only.
@@ -75,7 +75,7 @@ This library needs a number of packages to be pre-installed before installing cl
 python '\Scripts\CheckPkgs.py'
 ```
 
-* Install CloDSA following instructions mentioned here https://github.com/joheras/CLoDSA
+* Install CloDSA by following [CLoDSA Instructions](https://github.com/joheras/CLoDSA)
 
 ## How to filter and augment images.
 Following steps explain how to create datasets for training using code in this repository.
