@@ -30,7 +30,7 @@ Following are depencies for this work
 *    Python3
 *    pytorch
 *    Tensorflow v1
-*    CloDsa [[6]](#6) - More about this in Prerequisites section.
+*    CloDsa [[6]](#6) and it's dependencies- More about this in Prerequisites section.
 
 # Data download instructions
 
