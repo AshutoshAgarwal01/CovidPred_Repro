@@ -9,8 +9,9 @@ In this study, authors have applied following techniques to overcome issues ment
 
 Overall, authors showed that artificially generated x-ray images using image augmentation techniques greatly improved model performance when compared with original smaller set of images.
 
-Link to original research paper: https://www.hindawi.com/journals/ijbi/2020/8889023/
-Link to GitHub repository of original research paper: https://github.com/arunsharma8osdd/covidpred
+**Link to original research paper**: https://www.hindawi.com/journals/ijbi/2020/8889023/
+
+**Link to GitHub repository of original research paper**: https://github.com/arunsharma8osdd/covidpred
 
 # Reproduction work (this repository)
 This work reproduces the work done in original paper to verify if model trained with augmented images (artificial dataset) outperforms model trained with only original set of images.
@@ -23,11 +24,24 @@ For this work, we created 26 other artificial datasets based on origianl set of 
 * Model trained with images rotated by 140 degrees.
 * Model trained with original images and augmented images combined.
 
-# Data acquisition and processing
+# Data download instructions
+
 Data from following three sources is used in this paper.
 * [github (Cohen’s covid-chestxray-dataset)](https://github.com/ieee8023/covid-chestxray-dataset): This dataset is used to get 'covid 19' and 'non covid 19' images
 * [Kaggle NIH dataset](https://www.kaggle.com/nih-chest-xrays/data): This dataset is used to get Pneumonia images.
 * [National Library of medicine](https://lhncbc.nlm.nih.gov/LHC-publications/pubs/TuberculosisChestXrayImageDataSets.html): This dataset is used to get normal and TB images.
+
+Manually download this data in `Data/FullSet` directory. Following should be final directory structure.
+
+| Source | Directory Path | Comment |
+| --- | --- | --- |
+| Kaggle | `Data/FullSet/Kaggle Dataset/Images/` | There will be several directories containing images |
+| Github | `Data/FullSet/MontgomerySet/` | There will be two directories `CXR_png` with images and `ClinicalReadings` with metadata |
+| National Library of medicine | `Data/FullSet/ieee8023_covid-chestxray-dataset` | All images will be present in this directory | 
+
+Please refer to `Data\FullSet` directory in this repo. This directory contains sample images with correct folder structure.
+
+# Data pre-processing
 
 Following diagram depicts all steps we performed to gather and process data for model training and validation purposes.
 ![Data_Processing](https://user-images.githubusercontent.com/17690014/163689385-e15138a6-13ea-4c4a-ab1f-4f53c5a8f060.png)
@@ -55,35 +69,33 @@ Image augmentation library CloDSA must be installed on the machine before procee
 
 ### Steps to install CloDSA
 This library needs a number of packages to be pre-installed before installing clodsa.
-* Execute script \Scripts\CheckPkgs.py to check if all pre-requisites to install CloDSA are met. This script will list packages that are needed for CloDSA but are missing on machine. Install all missing packages.
+* Execute script `\Scripts\CheckPkgs.py` to check if all pre-requisites to install CloDSA are met. This script will list packages that are needed for CloDSA but are missing on machine. Install all missing packages.
+
+```
+python '\Scripts\CheckPkgs.py'
+```
+
 * Install CloDSA following instructions mentioned here https://github.com/joheras/CLoDSA
 
-## How to recreate data
+## How to filter and augment images.
 Following steps explain how to create datasets for training using code in this repository.
 
-* Create directory structure same as present in this repository.
-* Download data available from aforementioned sources to 'Data\FullSet' directory. Name the folders as below:
-  * ieee8023_covid-chestxray-dataset - keep Cohen's data here.
-  * Kaggle Dataset - Keep data downloaded from Kaggle here.
-  * MontgomerySet - Keep data downloaded from last source here.
-* Filtering data: Execute following scripts (present in 'Scripts\DataManipulation' directory) in given order to create datasets.
-  * github_select_images_for_reproduction.py - filters data from github source and copies filtered images to directories \Data\FinalSet\covid_19 and \Data\FinalSet\non_covid_19
-  * Kaggle_select_images_for_reproduction.py - filters data from Kaggle source and copies filterd images to following directory.
-    * \Data\FinalSet\Pneumonia
-  * Montgomery_select_images_for_reproduction.py - filters data from last source and copies filtered images to following directories.
-    * \Data\FinalSet\Normal and \Data\FinalSet\TB
-* Train-test split: Execute script train_test_split.py. This script will split filtered data for each category into train (90%) and test (10%) set. Following two directoris will be created.
-  * Data\train
-  * Data\test
-* Augmentation: Execute script augmentation_main.py to create artificial datasets by using 25 augmentation techniques on original images. All these datasets will be created in directory \Data\Augmented.
+* **Filtering data**: Execute following scripts (present in `Scripts\DataManipulation` directory) in given order to create datasets.
+  * **github_select_images_for_reproduction.py** - filters data from github source and copies filtered images to directories `\Data\FinalSet\covid_19` and `\Data\FinalSet\non_covid_19`
+  * **Kaggle_select_images_for_reproduction.py** - filters data from Kaggle source and copies filterd images to directory `\Data\FinalSet\Pneumonia`
+  * **Montgomery_select_images_for_reproduction.py** - filters data from last source and copies filtered images to directories `\Data\FinalSet\Normal` and `\Data\FinalSet\TB`
+* **Train-test split**: Execute script train_test_split.py. This script will split filtered data for each category into train (90%) and test (10%) set. Following two directoris will be created.
+  * `Data\train`
+  * `Data\test`
+* **Augmentation**: Execute script `augmentation_main.py` to create artificial datasets by using 25 augmentation techniques on original images. All these datasets will be created in directory `\Data\Augmented`.
   *  This directory will contain 2 directories for each augmentation technique; one for training and other for testing.
   *  This directory will contain two additional directories that will keep combined dataset (i.e. dataset with all 25 augmented ones combined)
  *  Manual steps: Following steps have to be done manually. These are not covered by scripts.
-  *  Copy images from origianl train and test datasets (from Data/train and Data/test folders respectively) to following folders
-   *  Copy folder Data\train to Data\Augmented
-   *  Copy images in Data/train to Data\Augmented\train_combined
-   *  Copy folder Data\test to Data\Augmented
-   *  Copy images in Data/test to Data\Augmented\test_combined
+  *  Copy images from origianl train and test datasets (from `Data/train` and `Data/test` folders respectively) to following folders
+   *  Copy folder `Data\train` to `Data\Augmented`
+   *  Copy images in `Data\train` to `Data\Augmented\train_combined`
+   *  Copy folder `Data\test` to `Data\Augmented`
+   *  Copy images in `Data\test` to `Data\Augmented\test_combined`
 
 ## How to train models
 Following steps explain how to train models using scripts present in the repository. Model training scripts are present in directory '\Scripts\ModelTraining'
