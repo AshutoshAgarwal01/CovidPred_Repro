@@ -15,6 +15,8 @@ Link to GitHub repository of original research paper: https://github.com/arunsha
 # Reproduction work (this repository)
 This work reproduces the work done in original paper to verify if model trained with augmented images (artificial dataset) outperforms model trained with only original set of images.
 
+**Video Presentation link**: https://mediaspace.illinois.edu/media/t/1_d2sh1778
+
 For this work, we created 26 other artificial datasets based on origianl set of images. Further, from these dataset we trained following models:
 * Model trained with original images only.
 * Model trained with images rotated by 120 degrees.
