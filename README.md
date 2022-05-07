@@ -1,7 +1,7 @@
-This repository contains code and artifacts to reproduce results obtained by a research paper which classifies COIVD based on X-Ray images.
+This repository contains code and artifacts to reproduce results obtained by a research paper `(Sharma, Rani & Gupta 2020)` [[1]](#1) which classifies COIVD based on X-Ray images.
 
 # Original research paper
-This work is done to build efficient deep learning models using the convolutional neural network (CNN) using a very limited set of chest X-ray images to differentiate COVID-19 cases from healthy cases and other types of illnesses. The overall goal of the paper is to train models such that rapid screening of COVID-19 patients is possible in a non-invasive and automated fashion.
+This work [[1]](#1) is done to build efficient deep learning models using the convolutional neural network (CNN) using a very limited set of chest X-ray images to differentiate COVID-19 cases from healthy cases and other types of illnesses. The overall goal of the paper is to train models such that rapid screening of COVID-19 patients is possible in a non-invasive and automated fashion.
 
 In this study, authors have applied following techniques to overcome issues mentioned above:
 * To overcome scarcity of x-ray images, authors proposed creating a much larger artificial dataset using smaller original dataset. This artificial dataset was created by applying multiple image augmentation techniques on the original data.
@@ -9,9 +9,9 @@ In this study, authors have applied following techniques to overcome issues ment
 
 Overall, authors showed that artificially generated x-ray images using image augmentation techniques greatly improved model performance when compared with original smaller set of images.
 
-> **Link to original research paper**: https://www.hindawi.com/journals/ijbi/2020/8889023/
+> **Link to original research paper (Sharma, Rani & Gupta 2020) [[1]](#1)**: https://www.hindawi.com/journals/ijbi/2020/8889023/
 
-> **Link to GitHub repository of original research paper**: https://github.com/arunsharma8osdd/covidpred
+> **Link to GitHub repository [[2]](#2) of original research paper**: https://github.com/arunsharma8osdd/covidpred
 
 # Reproduction work (this repository)
 This work reproduces the work done in original paper to verify if model trained with augmented images (artificial dataset) outperforms model trained with only original set of images.
@@ -27,9 +27,9 @@ For this work, we created 26 other artificial datasets based on origianl set of 
 # Data download instructions
 
 Data from following three sources is used in this paper.
-* [github (Cohen’s covid-chestxray-dataset)](https://github.com/ieee8023/covid-chestxray-dataset): This dataset is used to get 'covid 19' and 'non covid 19' images
-* [Kaggle NIH dataset](https://www.kaggle.com/nih-chest-xrays/data): This dataset is used to get Pneumonia images.
-* [National Library of medicine](https://lhncbc.nlm.nih.gov/LHC-publications/pubs/TuberculosisChestXrayImageDataSets.html): This dataset is used to get normal and TB images.
+* [github (Cohen’s covid-chestxray-dataset)](https://github.com/ieee8023/covid-chestxray-dataset) [[3]](#3): This dataset is used to get 'covid 19' and 'non covid 19' images
+* [Kaggle NIH dataset](https://www.kaggle.com/nih-chest-xrays/data) [[4]](#4): This dataset is used to get Pneumonia images.
+* [National Library of medicine](https://lhncbc.nlm.nih.gov/LHC-publications/pubs/TuberculosisChestXrayImageDataSets.html) [[5]](#5): This dataset is used to get normal and TB images.
 
 Manually download this data in `Data/FullSet` directory. Following should be final directory structure.
 
@@ -193,3 +193,12 @@ This table shows performance of two models:
 Authors used recall as metric in their study. We can see that recall has significantly improved in combined model for all labels except non-covid which makes us feel that paper's approach of augmentation did not fully satisfy the expected results. However, F1-score has improved across all labels. This refutes the conclusion made by just observing recall and tells us that the combined model is actually better than original model.
 
 ![Markdown_Results](https://user-images.githubusercontent.com/17690014/167269449-15efef09-f4ba-4c23-93ab-59d7ac810d4b.PNG)
+
+# References
+*    <a id="1">[1]</a> [Original Paper](https://www.hindawi.com/journals/ijbi/2020/8889023/)
+*    <a id="2">[2]</a> [Original code - CovidPred](https://github.com/arunsharma8osdd/covidpred)
+*    <a id="3">[3]</a> [Cohen's covid-chestxray-dataset](https://github.com/ieee8023/covid-chestxray-dataset)
+*    <a id="4">[4]</a> [Kaggle NIH dataset](https://www.kaggle.com/datasets/nih-chest-xrays/data)
+*    <a id="5">[5]</a> [National Library of medicine](https://lhncbc.nlm.nih.gov/LHC-publications/pubs/TuberculosisChestXrayImageDataSets.html)
+*    <a id="6">[6]</a> [CloDSA](https://github.com/joheras/CLoDSA)
+*    <a id="7">[7]</a> [Accuracy, precision, recall](https://towardsdatascience.com/confusion-matrix-for-your-multi-class-machine-learning-model-ff9aa3bf7826)
