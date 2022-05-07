@@ -31,7 +31,6 @@ Following are depencies for this work
 *    pytorch
 *    Tensorflow v1
 *    CloDsa [[6]](#6) - More about this in Prerequisites section.
-*    Multi-core CPU for faster model training.
 
 # Data download instructions
 
