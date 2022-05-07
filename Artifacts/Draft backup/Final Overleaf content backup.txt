@@ -51,14 +51,14 @@
 
 
 \newcommand\BibTeX{B\textsc{ib}\TeX}
-\title{CS598 DL4H Spring 2022 Project Draft}
+\title{CS598 DL4H Spring 2022 Project Report}
 \author{Ashutosh Agarwal and Chandan Goel \\
   \texttt{aa61@illinois.edu, chandan3@illinois.edu}
   \\[2em]
-  Group ID: 179\\
+  Group ID: 179, Difficulty: []\\
   %% Paper ID: \href{https://www.hindawi.com/journals/ijbi/2020/8889023/}{External [7]}\\
   Paper ID: \href{https://www.hindawi.com/journals/ijbi/2020/8889023/}{External (Sharma, Rani \& Gupta 2020) [7]}\\
-  Presentation link (TODO): \url{https://www.youtube.com} \\
+  Presentation link: \url{https://mediaspace.illinois.edu/media/t/1_d2sh1778} \\
   Code link: \url{https://github.com/AshutoshAgarwal01/CovidPred_Repro}} 
 
 \begin{document}
@@ -230,8 +230,8 @@ Our reproduction study did not result in exact same accuracy numbers as the orig
 
 % The number of subsections for results should be the same as the number of hypotheses you are trying to verify.
 
-\subsection{Result 1: (Results/ Analyses/ Plans)}
-
+%\subsection{Result 1: (Results/ Analyses/ Plans)}
+\subsection{Result 1}
 %\subsubsection{Result 1}
 
 
@@ -253,7 +253,8 @@ We plan to introduce more non-covid19 images to our model in final study to conf
 \label{fig:orig-comb-perf}
 \end{figure}
 
-\subsection{Result 2: (Results/ Analyses/ Plans)}
+%\subsection{Result 2: (Results/ Analyses/ Plans)}
+\subsection{Result 2}
 Authors showed that performance of models trained with 120 and 140 degree rotated images were complimentary to each other. Together, these two models beat performance of model trained with original images. 
 
 Table in \textbf{Figure \ref{fig:orig-aug-perf}} summarizes true positive rate (proportions of images correctly classified by the model for given label) for all three models on unseen original data.
@@ -271,6 +272,12 @@ We found that the difference is due to random sampling of TB images when compare
 \end{figure}
 
 \subsection{Additional results not present in the original paper}
+\subsubsection{New Dataset/ Random Sampling}
+As observed in Result 1 section, accuracy (TPR) for non-covid images degraded in the combined model due to a smaller dataset size of 3 images, which was not inline to original paper. As planned, we introduced new non-covid images to our model which significantly improved the performance. We were able to achieve the accuracy of \textbf{71.34} (an improvement of 100\% from previous results).
+
+We performed additional simulations of the study using different data sampling and observed that overall the results are in the range of 5\%. We also observed that in over 90\% of the simulations we were able to replicate the results for TB inline with the original paper i.e. both augmented model performed better than the baseline (Result 2 section).
+
+\subsubsection{Evaluation Metrics}
 
 We noticed that original authors used recall (true positive rate) as the metric to evaluate the models. However, we feel that in case of classification study, using recall alone is not appropriate to judge a model. 
 
