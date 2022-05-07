@@ -82,15 +82,40 @@ Following steps explain how to create datasets for training using code in this r
 
 * **Filtering data**: Execute following scripts (present in `Scripts\DataManipulation` directory) in given order to create datasets.
   * **github_select_images_for_reproduction.py** - filters data from github source and copies filtered images to directories `\Data\FinalSet\covid_19` and `\Data\FinalSet\non_covid_19`
+
+```
+python '\Scripts\DataManipulation\github_select_images_for_reproduction.py'
+```
+
   * **Kaggle_select_images_for_reproduction.py** - filters data from Kaggle source and copies filterd images to directory `\Data\FinalSet\Pneumonia`
+
+```
+python '\Scripts\DataManipulation\Kaggle_select_images_for_reproduction.py'
+```
+
   * **Montgomery_select_images_for_reproduction.py** - filters data from last source and copies filtered images to directories `\Data\FinalSet\Normal` and `\Data\FinalSet\TB`
-* **Train-test split**: Execute script train_test_split.py. This script will split filtered data for each category into train (90%) and test (10%) set. Following two directoris will be created.
+
+```
+python '\Scripts\DataManipulation\Montgomery_select_images_for_reproduction.py'
+```
+
+* **Train-test split**: Execute script `train_test_split.py`. This script will split filtered data for each category into train (90%) and test (10%) set. Following two directoris will be created.
   * `Data\train`
   * `Data\test`
+
+```
+python '\Scripts\DataManipulation\train_test_split.py'
+```
+
 * **Augmentation**: Execute script `augmentation_main.py` to create artificial datasets by using 25 augmentation techniques on original images. All these datasets will be created in directory `\Data\Augmented`.
   *  This directory will contain 2 directories for each augmentation technique; one for training and other for testing.
   *  This directory will contain two additional directories that will keep combined dataset (i.e. dataset with all 25 augmented ones combined)
- *  Manual steps: Following steps have to be done manually. These are not covered by scripts.
+
+```
+python '\Scripts\DataManipulation\augmentation_main.py'
+```
+
+ *  **Manual steps**: Following steps have to be done manually. These are not covered by scripts.
   *  Copy images from origianl train and test datasets (from `Data/train` and `Data/test` folders respectively) to following folders
    *  Copy folder `Data\train` to `Data\Augmented`
    *  Copy images in `Data\train` to `Data\Augmented\train_combined`
@@ -100,24 +125,47 @@ Following steps explain how to create datasets for training using code in this r
 ## How to train models
 Following steps explain how to train models using scripts present in the repository. Model training scripts are present in directory '\Scripts\ModelTraining'
 
-* train_generic_original.py: This script trains model by using original dataset.
-* train_augment_generic_120.py: This script trains model by using images rotated by 120 degrees.
-* train_augment_generic_140.py: This script trains model by using images rotated by 140 degrees.
-* train_augment_generic.py: This script trains model by using combined dataset (original images + all 25 augmented datasets combined).
+* **train_generic_original.py**: This script trains model by using original dataset.
+
+```
+python '\Scripts\ModelTraining\train_generic_original.py'
+```
+
+* **train_augment_generic_120.py**: This script trains model by using images rotated by 120 degrees.
+
+```
+python '\Scripts\ModelTraining\train_augment_generic_120.py'
+```
+
+* **train_augment_generic_140.py**: This script trains model by using images rotated by 140 degrees.
+
+```
+python '\Scripts\ModelTraining\train_augment_generic_140.py'
+```
+
+* **train_augment_generic.py**: This script trains model by using combined dataset (original images + all 25 augmented datasets combined).
+
+```
+python '\Scripts\ModelTraining\train_augment_generic.py'
+```
 
 ### Output of model training
 Following output files are created.
 
-* Logfiles: File is created in the same folder where scripts are present. Name and path of the logfile can be customized in the script.
-* Trained model files: Trained model and it's associated files are stored in 'Model_{filename}' directory. Here filename = name of dataset. Please find more information about it from script.
+* **Logfiles**: File is created in the same folder where scripts are present. Name and path of the logfile can be customized in the script.
+* **Trained model files**: Trained model and it's associated files are stored in `'Model_{filename}'` directory. Here filename = name of dataset. Please find more information about it from script.
 
 ## How to validate models
-After model training, we want to validate the models on unseen (test) datasets. Execute script 'validate_augment_generic.py' to validate the models.
+After model training, we want to validate the models on unseen (test) datasets. Execute script `validate_augment_generic.py` to validate the models.
 
 Please modify variables in the script to modify target model, target dataset and logfile path.
 
+```
+python '\Scripts\ModelTraining\validate_augment_generic.py'
+```
+
 ### Output of validation
 
-* Logfiles: Created in the same folder from where script is executed.
-* ValidationResult.csv: Contains validation result (accuracy for each label). This file is stored in same folder where model was stored.
+* **Logfiles**: Created in the same folder from where script is executed.
+* **ValidationResult.csv**: Contains validation result (accuracy for each label). This file is stored in same folder where model was stored.
 
